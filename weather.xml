@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Weather.com</key>
+	<dict>
+		<key>searchCityState</key>
+		<dict>
+			<key>choicesFound</key>
+			<array>
+                <dict>
+					<key>multipleMatchString</key>
+					<string>A HREF="/outlook/travel/businesstraveler/local/</string>
+					<key>codeStart</key>
+					<string>businesstraveler/local/</string>
+                    <key>codeEnd</key>
+					<string>"</string>
+					<key>nameStart</key>
+					<string>;"&gt;</string>
+					<key>nameEnd</key>
+					<string>&lt;/A&gt;</string>
+					<key>parseOrder</key>
+					<array>
+						<string>code</string>
+						<string>name</string>
+					</array>
+				</dict>
+                <dict>
+					<key>multipleMatchString</key>
+					<string>TD VALIGN="TOP" ALIGN="LEFT" W</string>
+					<key>codeEnd</key>
+					<string>'</string>
+					<key>codeStart</key>
+					<string>search_city" onClick="setRecentSearch('</string> 
+					<key>nameEnd</key>
+					<string>',''</string>
+					<key>nameStart</key>
+					<string>,'1','</string>
+					<key>parseOrder</key>
+					<array>
+						<string>code</string>
+						<string>name</string>
+					</array>
+				</dict>
+                <dict>
+					<key>multipleMatchString</key>
+					<string>class="searchResultsBox"</string>
+					<key>codeEnd</key>
+					<string>'</string>
+					<key>codeStart</key>
+					<string> onclick="setRecentSearchNew('</string> 
+					<key>nameEnd</key>
+					<string>',</string>
+					<key>nameStart</key>
+					<string>, '1', '</string>
+					<key>parseOrder</key>
+					<array>
+						<string>code</string>
+						<string>name</string>
+					</array>
+				</dict>
+			</array>
+            <key>notFound</key>
+			<array>
+				<string>No items found. Please check your spelling or try another term.</string>
+				<string>Sorry, the page you requested was not found on weather.com.</string>
+			</array>	
+			<key>searchURL</key>
+			<string>http://www.weather.com/search/enhanced?where=%@</string>
+		</dict>
+		<key>searchZip</key>
+		<dict>
+			<key>choicesFound</key>
+			<array>
+				<dict>
+					<key>codeEnd</key>
+					<string>?family=xhtmlmp"</string>
+					<key>codeStart</key>
+					<string>&lt;a href="http://mw.weather.com/now/</string>
+					<key>nameEnd</key>
+					<string>&lt;br&gt;</string>
+					<key>nameStart</key>
+					<string>&lt;div class="locator"&gt;</string>
+					<key>parseOrder</key>
+					<array>
+						<string>code</string>
+						<string>name</string>
+					</array>
+					<key>multipleMatchString</key>
+					<string>TODAY'S WEATHER for</string>
+				</dict>
+			</array>
+			<key>notFound</key>
+			<array>
+				<string>No items found. Please check your spelling or try another term.</string>
+				<string>Sorry, the page you requested was not found on weather.com.</string>
+			</array>
+			<key>sameAsSearchCityState</key>
+			<false/>
+			<key>searchURL</key>
+			<string>http://mw.weather.com/now/%@?family=webkit</string>
+		</dict>
+		<key>weather data</key>
+		<dict>
+			<key>url</key>
+			<string>http://www.weather.com/weather/local/%@</string>
+			<key>weather items</key>
+			<array/>
+		</dict>
+	</dict>
+</dict>
+</plist>
