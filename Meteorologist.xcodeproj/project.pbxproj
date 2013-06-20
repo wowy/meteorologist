@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		01BF8C071492BE030069C397 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01BF8C061492BE030069C397 /* QTKit.framework */; };
-		01BF8C4D1492C4100069C397 /* CURLHandle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01BF8C4C1492C4100069C397 /* CURLHandle.framework */; };
-		01BF8C4F1492C4950069C397 /* CURLHandle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 01BF8C4E1492C4950069C397 /* CURLHandle.framework */; };
 		510939BF0BFFCBB000202293 /* weather.xml in Resources */ = {isa = PBXBuildFile; fileRef = 510939BE0BFFCBB000202293 /* weather.xml */; };
 		514F3E1F0A4E0A5D00378165 /* Meteo-Logo.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8BE3F8770425778A001ED9CA /* Meteo-Logo.tiff */; };
 		514F3E200A4E0A5D00378165 /* meteo.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8B47F0400410469E00809258 /* meteo.icns */; };
@@ -123,7 +121,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				01BF8C4F1492C4950069C397 /* CURLHandle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,7 +129,6 @@
 /* Begin PBXFileReference section */
 		01BF8C061492BE030069C397 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = ../../../../System/Library/Frameworks/QTKit.framework; sourceTree = "<group>"; };
 		01BF8C4C1492C4100069C397 /* CURLHandle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CURLHandle.framework; path = frameworks/CURLHandle.framework; sourceTree = "<group>"; };
-		01BF8C4E1492C4950069C397 /* CURLHandle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CURLHandle.framework; path = frameworks/CURLHandle.framework; sourceTree = "<group>"; };
 		089C165DFE840E0CC02AAC07 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -269,7 +265,6 @@
 			files = (
 				514F3E750A4E0ECA00378165 /* Cocoa.framework in Frameworks */,
 				01BF8C071492BE030069C397 /* QTKit.framework in Frameworks */,
-				01BF8C4D1492C4100069C397 /* CURLHandle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,7 +331,6 @@
 		29B97314FDCFA39411CA2CEA /* Meteorologist */ = {
 			isa = PBXGroup;
 			children = (
-				01BF8C4E1492C4950069C397 /* CURLHandle.framework */,
 				51D7CF740B13D79C006F376D /* Images */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,

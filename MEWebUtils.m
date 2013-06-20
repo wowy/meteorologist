@@ -12,7 +12,6 @@
 //#import <CURLHandle_64/CURLHandle.h>
 //#import <CURLHandle_64/CURLHandle+extras.h>
 //#else
-#import <CURLHandle/CURLHandle.h>
 //#import <CURLHandle/CURLHandle+extras.h>
 //#endif
 
@@ -20,16 +19,9 @@
 
 @implementation MEWebFetcher
 
-- (id)init
-{
-    self = [super init];
-	[CURLHandle curlHelloSignature:@"XxXx" acceptAll:YES];	// to get CURLHandle registered for handling URLs
-	return self;
-}
 
 - (void)dealloc
 {
-	[CURLHandle curlGoodbye];	// to clean up
     [super dealloc];
 }
 
@@ -92,23 +84,26 @@
 - (NSData *)fetchURLtoData:(NSURL *)url withTimeout:(int)secs 
 {
 	NSData *data; // data from the website
-	mURLHandle = (CURLHandle *)[url URLHandleUsingCache:NO];
-	
-	[mURLHandle setFailsOnError:NO];	   // don't fail on >= 300 code; I want to see real results.
-	[mURLHandle setFollowsRedirects:YES];  // Follow Location: headers in HTML docs.
-	[mURLHandle setUserAgent: @"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.2) Gecko/20100115 Firefox/3.6 GTB6"];
-	//[mURLHandle setUserAgent: @"Mozilla/5.0 (iPhone; U; iPhone OS_3_1_3 like Mac OS X; en-US) Gecko/20100115 Firefox/3.6 GTB6"];
-	[mURLHandle setConnectionTimeout:secs];
-	
-	data = [[mURLHandle resourceData] retain]; // already autoreleased?
-	if (NSURLHandleLoadFailed == [mURLHandle status])
-	{
-		NSLog([mURLHandle failureReason],@"");
-        [data release];
-		return nil;
-	}
-	return [data autorelease];
-	//return data;
+    
+    data = [NSData dataWithContentsOfURL:url];
+    
+//	mURLHandle = (CURLHandle *)[url URLHandleUsingCache:NO];
+//	
+//	[mURLHandle setFailsOnError:NO];	   // don't fail on >= 300 code; I want to see real results.
+//	[mURLHandle setFollowsRedirects:YES];  // Follow Location: headers in HTML docs.
+//	//[mURLHandle setUserAgent: @"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.2) Gecko/20100115 Firefox/3.6 GTB6"];
+//	//[mURLHandle setUserAgent: @"Mozilla/5.0 (iPhone; U; iPhone OS_3_1_3 like Mac OS X; en-US) Gecko/20100115 Firefox/3.6 GTB6"];
+//	[mURLHandle setConnectionTimeout:secs];
+//	
+//	data = [[mURLHandle resourceData] retain]; // already autoreleased?
+//	if (NSURLHandleLoadFailed == [mURLHandle status])
+//	{
+//		NSLog([mURLHandle failureReason],@"");
+//        [data release];
+//		return nil;
+//	}
+//	return [data autorelease];
+	return data;
 }
 
 - (void)URLHandle:(NSURLHandle *)sender resourceDataDidBecomeAvailable:(NSData *)newBytes
