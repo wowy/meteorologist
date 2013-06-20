@@ -569,24 +569,6 @@
 																 stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
 }
 
-- (IBAction)openEmail:(id)sender
-{
-    //[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[@"mailto:fahrenba@mac.com"
-	//															 stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
-}
-
-- (IBAction)openSMS:(id)sender
-{
-    //[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[@"mailto:8005551212@txt.att.net"
-	//															 stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
-}
-
-- (IBAction)openDonatation:(id)sender
-{
-	//[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[@"https://www.paypal.com/xclick/business=fahrenba%40mac.com&item_name=Buy+Matt+a+car+so+he+doesn%27t+have+to+be+driven+to+and+from+work+by+his+father+fund&no_note=1&tax=0&currency_code=USD"
-	//															 stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
-}
-
 - (IBAction)chooseAlertSong:(id)sender
 {
     NSOpenPanel *panel = [NSOpenPanel openPanel];

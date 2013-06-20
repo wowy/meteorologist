@@ -131,9 +131,6 @@ enum{kPeriodType,kNumberType,kStringType};
 
 - (IBAction)openGroupPage:(id)sender;
 - (IBAction)openHomePage:(id)sender;
-- (IBAction)openEmail:(id)sender;
-- (IBAction)openSMS:(id)sender;
-- (IBAction)openDonatation:(id)sender;
 
 - (IBAction)chooseAlertSong:(id)sender;
 

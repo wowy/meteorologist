@@ -237,7 +237,7 @@
    seems to be defined for cityTable */
 - (void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCell 
 											forTableColumn:(NSTableColumn *)aTableColumn 
-											row:(int)rowIndex
+											row:(NSInteger)rowIndex
 {
     if((aTableView == weatherPropertyTable || aTableView == forecastPropertyTable) && 
 		[aCell isMemberOfClass:[NSButtonCell class]]) 
@@ -399,7 +399,7 @@
     }
 }
 
-- (BOOL)tableView:(NSTableView *)aTableView shouldEditTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+- (BOOL)tableView:(NSTableView *)aTableView shouldEditTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
     return NO;
 }
@@ -923,14 +923,14 @@
 #pragma mark -
 #pragma mark Table Data Source:
 
-- (int)numberOfRowsInTableView:(NSTableView *)aTableView
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
 {
     return [rowData count];
 }
 
 - (id)tableView:(NSTableView *)aTableView
-    objectValueForTableColumn:(NSTableColumn *)aTableColumn 
-    row:(int)rowIndex
+objectValueForTableColumn:(NSTableColumn *)aTableColumn
+            row:(NSInteger)rowIndex
 {
     NSDictionary *aRow;
         
@@ -947,10 +947,10 @@
     return [aRow objectForKey: [aTableColumn identifier]];
 }
 
-- (void)tableView:(NSTableView *)aTableView 
-    setObjectValue:(id)anObject 
-    forTableColumn:(NSTableColumn *)aTableColumn 
-    row:(int)rowIndex
+- (void)tableView:(NSTableView *)aTableView
+   setObjectValue:(id)anObject
+   forTableColumn:(NSTableColumn *)aTableColumn
+              row:(NSInteger)rowIndex
 {
     NSString *columnName;
     NSMutableDictionary *aRow;

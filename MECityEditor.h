@@ -12,8 +12,7 @@
 /* Special Thanks to: Adam Vandenberg for this code.
 					  http://flangy.com/dev/osx/tableviewdemo/
 */
-@interface  MECitySearchResultsTable : NSObject //<NSTableViewDataSource, NSTableViewDelegate,
-														// NSOutlineViewDataSource, NSOutlineViewDelegate>
+@interface  MECitySearchResultsTable : NSObject <NSTableViewDataSource, NSTableViewDelegate, NSOutlineViewDataSource, NSOutlineViewDelegate>
 {
 	NSMutableArray *rowData;
 	BOOL _editable, _selectable;
@@ -37,7 +36,7 @@
 - (void) deleteRows;
 @end
 
-@interface MECityEditor : NSObject 
+@interface MECityEditor : NSObject <NSOutlineViewDelegate, NSTableViewDelegate>
 {
 	IBOutlet NSWindow  *window;
 	IBOutlet NSTabView *tabView;
