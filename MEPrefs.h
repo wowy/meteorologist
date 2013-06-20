@@ -10,7 +10,7 @@
 
 enum{kPeriodType,kNumberType,kStringType};
 
-@interface MEPrefs : NSObject 
+@interface MEPrefs : NSObject <NSWindowDelegate>
 {
 	//Windows
 	IBOutlet NSWindow *prefsWindow;

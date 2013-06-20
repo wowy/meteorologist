@@ -598,8 +598,13 @@
     [panel setAllowedFileTypes:[NSArray arrayWithObjects:@"aiff", @"aif", @"mp3", @"wav", @"wave", @"avi", @"swf", @"dv", @"mpeg", @"midi", @"mid", @"mpg", nil]];
     if([panel runModal]==NSOKButton)
     {
-        NSString *filename = [[panel filenames] objectAtIndex:0];
-        
+        NSArray *urls = [panel URLs];
+        NSString *filename = nil;
+        if (urls && [urls count] > 0) {
+            NSURL *url = urls[0];
+            filename = [url absoluteString];
+        }
+                
         [alertSong setStringValue:filename];
         [self outletAction:sender];
     }
