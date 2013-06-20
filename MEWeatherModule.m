@@ -2267,7 +2267,7 @@ NSImage *imageForName(NSString *name, BOOL inDock)
 					//	hi and low can be combined in same line
 					//wind is known by "winds"
 					
-					int index;
+					NSInteger index;
 					char percent = '%';
 					
 					if((index = [words indexOfObject:@"percent"]) != NSNotFound && index > 0)
@@ -2617,7 +2617,7 @@ NSImage *imageForName(NSString *name, BOOL inDock)
         img = [[NSImage alloc] initWithContentsOfFile:@"/Library/Application Support/Meteo/Weather Status/Moon.tiff"];
         
         if(!img)
-            [[NSImage alloc] initWithContentsOfFile:[@"~/Library/Application Support/Meteo/Weather Status/Moon.tiff" stringByExpandingTildeInPath]];
+            img = [[NSImage alloc] initWithContentsOfFile:[@"~/Library/Application Support/Meteo/Weather Status/Moon.tiff" stringByExpandingTildeInPath]];
         
         if(img)
             return img;
@@ -2707,8 +2707,9 @@ NSImage *imageForName(NSString *name, BOOL inDock)
 	NSString *weatherQueryURL = [NSString stringWithFormat:@"http://www.crh.noaa.gov/forecasts/%@",code];
 																  //url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.crh.noaa.gov/data/forecasts/%@",code]];
     url = [NSURL URLWithString:[weatherQueryURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-	
-    string = [[NSString alloc] initWithContentsOfURL:url];
+	string = [[NSString alloc] initWithContentsOfURL:url
+                                            encoding:NSUTF8StringEncoding
+                                               error:nil];
     
     if(!string)
         return NO;
@@ -2839,10 +2840,9 @@ NSImage *imageForName(NSString *name, BOOL inDock)
         if(alertStr)
         {
             
-            NSString *loadedAlertString = [[NSString alloc]
-											initWithContentsOfURL:[NSURL URLWithString:[alertStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
-            
-            //NSString *loadedAlertString = [[[NSString alloc] initWithData:[[NSURL URLWithString:alertStr] resourceDataUsingCache:NO] encoding:NSASCIIStringEncoding] autorelease];
+            NSString *loadedAlertString = [[NSString alloc] initWithContentsOfURL:[NSURL URLWithString:[alertStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]
+                                                                         encoding:NSUTF8StringEncoding
+                                                                            error:nil];
             
             if(loadedAlertString)
             {
@@ -2941,7 +2941,7 @@ NSImage *imageForName(NSString *name, BOOL inDock)
             //	hi and low can be combined in same line
             //wind is known by "winds"
             
-            int index;
+            NSInteger index;
             char percent = '%';
             
             if((index = [words indexOfObject:@"percent"]) != NSNotFound && index > 0)

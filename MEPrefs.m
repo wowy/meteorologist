@@ -26,8 +26,8 @@
     
     if(old)
     {
-        [[NSFileManager defaultManager] removeFileAtPath:[NSString stringWithFormat:@"%@/Library/Preferences/Meteorologist.plist",NSHomeDirectory()] handler:nil];
-        
+        [[NSFileManager defaultManager] removeItemAtPath:[NSString stringWithFormat:@"%@/Library/Preferences/Meteorologist.plist",NSHomeDirectory()]
+                                                   error:nil];
         NSEnumerator *keyEnum = [old keyEnumerator];
         NSString *key;
         
@@ -595,8 +595,8 @@
     [panel setCanChooseDirectories:NO];
     [panel setCanChooseFiles:YES];
     [panel setResolvesAliases:YES];
-    
-    if([panel runModalForTypes:[NSArray arrayWithObjects:@"aiff", @"aif", @"mp3", @"wav", @"wave", @"avi", @"swf", @"dv", @"mpeg", @"midi", @"mid", @"mpg", nil]]==NSOKButton)
+    [panel setAllowedFileTypes:[NSArray arrayWithObjects:@"aiff", @"aif", @"mp3", @"wav", @"wave", @"avi", @"swf", @"dv", @"mpeg", @"midi", @"mid", @"mpg", nil]];
+    if([panel runModal]==NSOKButton)
     {
         NSString *filename = [[panel filenames] objectAtIndex:0];
         

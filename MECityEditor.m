@@ -596,7 +596,8 @@
 			// make sure it's selectable and not grey 
 			[cityTable reloadData]; // necessary to set selectable
 			[resultsTableData setSelectable:YES];
-			[cityTable selectRow:0 byExtendingSelection:NO];
+            [cityTable selectRowIndexes:[NSIndexSet indexSetWithIndex:0]
+                   byExtendingSelection:NO];
 			
 			NSMutableDictionary *dict = [currentCity codeAndInfoForServer:weatherSource];
 			[serverIsActive setState:![[dict objectForKey:@"inactive"] boolValue]];

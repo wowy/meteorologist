@@ -8,28 +8,6 @@
 
 #import "MEController.h"
 
-@interface NSMutableArray (CityControllerTableDS)
-
-- (int)numberOfRowsInTableView:(NSTableView *)aTableView;
-- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex;
-- (void)tableView:(NSTableView *)aTableView setObjectValue:(id)anObject forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex;
-
-- (BOOL)tableView:(NSTableView *)tableView writeRows:(NSArray*)rows toPasteboard:(NSPasteboard*)pboard;
-- (NSDragOperation)tableView:(NSTableView*)tableView validateDrop:(id <NSDraggingInfo>)info proposedRow:(int)row proposedDropOperation:(NSTableViewDropOperation)operation;
-- (BOOL)tableView:(NSTableView*)tableView acceptDrop:(id <NSDraggingInfo>)info row:(int)row dropOperation:(NSTableViewDropOperation)operation;
-
-- (id)outlineView:(NSOutlineView *)outlineView child:(int)index ofItem:(id)item;
-- (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item;
-- (int)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item;
-- (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item;
-
-- (void)outlineView:(NSOutlineView *)outlineView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn byItem:(id)item;
-- (NSDragOperation)outlineView:(NSOutlineView*)outlineView validateDrop:(id <NSDraggingInfo>)info proposedItem:(id)item proposedChildIndex:(int)index;
-- (BOOL)outlineView:(NSOutlineView*)outlineView acceptDrop:(id <NSDraggingInfo>)info item:(id)item childIndex:(int)index;
-- (BOOL)outlineView:(NSOutlineView *)outlineView writeItems:(NSArray*)items toPasteboard:(NSPasteboard*)pboard;
-
-@end
-
 @implementation NSMutableArray (CityControllerTableDS)
 
 - (int)numberOfRowsInTableView:(NSTableView *)aTableView
@@ -189,7 +167,10 @@
     return NSDragOperationMove;
 } // outlineView
 
-- (BOOL)outlineView:(NSOutlineView*)outlineView acceptDrop:(id <NSDraggingInfo>)info item:(id)item childIndex:(int)index
+- (BOOL)outlineView:(NSOutlineView*)outlineView
+         acceptDrop:(id <NSDraggingInfo>)info
+               item:(id)item
+         childIndex:(NSInteger)index
 {
     NSArray *selectedRows;
     NSEnumerator *rowEnum;
@@ -908,7 +889,7 @@ void catchException(NSException *exception)
 		[self addDataToMenu:menu forCity:&city newData:newData]; // crashes here.
 		
 		*linkString = [[city weatherReport] stringForKey:@"Weather Link"
-                                                  units:[NSArray arrayWithObject:@"None"]
+                                                  units:@"None"
                                                   prefs:prefsController
 					                  displayingDegrees:![prefsController hideCF]
 												modules:[MEWeather moduleNamesSupportingProperty:@"Weather Link"]];
@@ -1037,7 +1018,7 @@ void catchException(NSException *exception)
 
 		*linkString = [[city weatherReport]
 					  stringForKey:@"Weather Link"
-					  units:[NSArray arrayWithObject:@"None"]
+					  units:@"None"
 					  prefs:prefsController
 					  displayingDegrees:![prefsController hideCF]
 					  modules:[MEWeather moduleNamesSupportingProperty:@"Weather Link"]
@@ -1633,7 +1614,7 @@ void catchException(NSException *exception)
 					[linker setTitle:menuItemTitle];
                     
 					linkString = [report forecastStringForKey:@"Forecast - Link"
-														units:[NSArray arrayWithObject:@"None"]
+														units:@"None"
 														prefs:prefsController
 											displayingDegrees:![prefsController hideCF]
 													  modules:[MEWeather moduleNamesSupportingProperty:@"Forecast - Link"]];
@@ -1657,7 +1638,7 @@ void catchException(NSException *exception)
 					NSMenuItem *daItem = [tempMenu addItemWithTitle:@"Some Title" action:nil keyEquivalent:@""];
                     
 					linkString = [report forecastStringForKey:@"Forecast - Link"
-														units:[NSArray arrayWithObject:@"None"]
+														units:@"None"
 														prefs:prefsController
 											displayingDegrees:![prefsController hideCF]
 													  modules:[MEWeather moduleNamesSupportingProperty:@"Forecast - Link"]];
