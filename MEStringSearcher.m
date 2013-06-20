@@ -21,18 +21,13 @@
     self = [super init];
     if(self)
     {
-        string = [str retain];
+        string = str;
         length = [string length];
         range = NSMakeRange(0,length);
     }
     return self;
 }
 
-- (void)dealloc
-{
-    [string release];
-    [super dealloc];
-}
 
 - (NSString *)getStringWithLeftBound:(NSString *)lft rightBound:(NSString *)rght
 {
@@ -86,14 +81,14 @@
     if(![self isValidRange:newRange forLength:length])
         return nil;
     
-    newStr = [[string substringWithRange:newRange] retain];
+    newStr = [string substringWithRange:newRange];
     
     if(endOfRightStringIndex != 0)
         endOfRightStringIndex--;
     
     range = NSMakeRange(endOfRightStringIndex,length - endOfRightStringIndex);
         
-    return [newStr autorelease];
+    return newStr;
 }
 
 + (NSString *)getStringWithLeftBound:(NSString *)start rightBound:(NSString *)end
@@ -102,10 +97,9 @@
 	NSString *result;
 	MEStringSearcher *ss = [[MEStringSearcher alloc] initWithString:str];
 							
-	result = [[ss getStringWithLeftBound:start rightBound:end] retain];
-	[ss release];
+	result = [ss getStringWithLeftBound:start rightBound:end];
 	
-	return [result autorelease];
+	return result;
 }
 
 - (void)moveBack:(int)dis

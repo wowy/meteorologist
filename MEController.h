@@ -81,7 +81,7 @@
 - (void)generateMenu;
 - (void)generateMenuWithNewData;
 - (void)generateMenuWithNewData:(BOOL)newData newCities:(BOOL)newCities newCity:(BOOL)newCity;
-- (void)addDataToMenu:(NSMenu **)theMenu forCity:(MECity **)city newData:(BOOL*)newData;
+- (void)addDataToMenu:(NSMenu *)theMenu forCity:(MECity **)city newData:(BOOL*)newData;
 
 - (void)dummy;
 - (NSArray *)activeCities;

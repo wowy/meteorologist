@@ -27,14 +27,11 @@
 #import <Cocoa/Cocoa.h>
 #include <stdio.h>
 
-int main(int argc, const char *argv[])
-{
-	id pool = [NSAutoreleasePool new];
-	
-	NSString *logPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Logs/Meteo.log"];
-	freopen([logPath fileSystemRepresentation], "a", stderr);
-	
-	[pool release];
+int main(int argc, const char *argv[]) {
+    @autoreleasepool {
+        NSString *logPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Logs/Meteo.log"];
+        freopen([logPath fileSystemRepresentation], "a", stderr);
+    }
     
 	return NSApplicationMain(argc, argv);
 }

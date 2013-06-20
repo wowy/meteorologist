@@ -20,10 +20,6 @@
 @implementation MEWebFetcher
 
 
-- (void)dealloc
-{
-    [super dealloc];
-}
 
 + (MEWebFetcher *)sharedInstance
 {
@@ -57,7 +53,7 @@
 		NSLog(@"Fetching URL: %@",[url absoluteString]);
 	}
 	NSData *urlData     = [self fetchURLtoData:url withTimeout:secs];
-	NSString *urlString = [[[NSString alloc] initWithData:urlData encoding:NSASCIIStringEncoding] autorelease];
+	NSString *urlString = [[NSString alloc] initWithData:urlData encoding:NSASCIIStringEncoding];
 	
 	//[urlData release]; // JRC - I still don't understand release I guess...
 	//NSLog(@"urlData count: %i",[urlData retainCount]);
@@ -172,7 +168,7 @@
 + (NSArray *)performSearchOnURL:(NSURL *)url usingParseDict:(NSDictionary *)searchDict
 											    withTimeout:(int)secs
 {
-	NSMutableArray  *citiesFound  = [[NSMutableArray array] retain]; // array to return - already autoreleased
+	NSMutableArray  *citiesFound  = [NSMutableArray array]; // array to return - already autoreleased
 	NSString        *resultsPageContents;                   // text contents at url.
 	NSEnumerator	*itr;
 	NSRange			searchRange;
@@ -191,7 +187,7 @@
 	{
 		NSLog(@"Error downloading the page.");
 		//return [citiesFound autorelease];
-		return [citiesFound autorelease];
+		return citiesFound;
 	}
 	
 #if 0
@@ -214,7 +210,7 @@
 		{  
 			// NOT FOUND page
 			//return [citiesFound autorelease]; /* return an empty array for now */
-			return [citiesFound autorelease];
+			return citiesFound;
 		}
 	}
 
@@ -277,11 +273,10 @@
 										  addingToArray:&citiesFound];
 			}
 		} // while
-		return [citiesFound autorelease];
+		return citiesFound;
 	} // 
     
 	NSLog(@"No multiple choices found option");
-    [citiesFound release];
     return nil;
 }											  
 
@@ -319,18 +314,17 @@
 	NSAssert(foundDict,@"\"foundDict\" was nil in parseSingleMatchFromString.");
 	NSAssert(foundArray,@"\"foundArray\" was nil in parseSingleMatchFromString.");
 	
-	MEStringSearcher *ss = [[[MEStringSearcher alloc] initWithString:string] autorelease];
+	MEStringSearcher *ss = [[MEStringSearcher alloc] initWithString:string];
 	itr = [foundArray objectEnumerator];
 	
 	while (currKey = [itr nextObject])
 	{
-		substring = [[ss getStringWithLeftBound:[foundDict objectForKey:[currKey stringByAppendingString:@"Start"]]
-									 rightBound:[foundDict objectForKey:[currKey stringByAppendingString:@"End"]]] retain];
+		substring = [ss getStringWithLeftBound:[foundDict objectForKey:[currKey stringByAppendingString:@"Start"]]
+									 rightBound:[foundDict objectForKey:[currKey stringByAppendingString:@"End"]]];
 		if (substring)
 		{
 			substring = [substring stringByTrimmingCharactersInSet:set];
 			[cityInfoDict setObject:substring forKey:currKey]; // JRC - might cause a autorelease pool crash??
-            [substring release];
 		}
 		else
 		{
@@ -378,12 +372,11 @@
 		itr = [foundArray objectEnumerator];
 		while (currKey = [itr nextObject])
 		{
-			substring = [[ss getStringWithLeftBound:[foundDict objectForKey:[currKey stringByAppendingString:@"Start"]]
-										 rightBound:[foundDict objectForKey:[currKey stringByAppendingString:@"End"]]] retain];
+			substring = [ss getStringWithLeftBound:[foundDict objectForKey:[currKey stringByAppendingString:@"Start"]]
+										 rightBound:[foundDict objectForKey:[currKey stringByAppendingString:@"End"]]];
 			if (substring)
 			{
 				[cityInfoDict setObject:substring forKey:currKey];
-                [substring release];
 			} else
 			{
 				NSLog(@"Missing Key: %@ in [MEWebParser parseMultipleMatchesWithString...]",currKey);
@@ -393,6 +386,5 @@
 		[*cities addObject:cityInfoDict];
 	} // while
 	
-	[ss release];
 }
 @end

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4457.6" systemVersion="13A476u" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
-        <deployment version="1050" defaultVersion="1050" identifier="macosx"/>
+        <deployment version="1080" defaultVersion="1090" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4457.6"/>
     </dependencies>
     <objects>
@@ -73,7 +73,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <popUpButtonCell key="cell" type="push" title="_Weather Modules" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="205" id="1202">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
+                                                <font key="font" metaFont="menu"/>
                                                 <menu key="menu" title="OtherViews" id="202">
                                                     <items>
                                                         <menuItem title="_Weather Modules" state="on" id="205"/>
@@ -114,11 +114,11 @@
                                             <rect key="frame" x="17" y="16" width="363" height="194"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <clipView key="contentView" id="p7k-kT-Sl4">
-                                                <rect key="frame" x="1" y="17" width="361" height="176"/>
+                                                <rect key="frame" x="1" y="17" width="345" height="176"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="14" headerView="1297" id="221">
-                                                        <rect key="frame" x="0.0" y="0.0" width="361" height="176"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="360.5" height="177"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -150,7 +150,7 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="1297">
-                                                <rect key="frame" x="0.0" y="0.0" width="361" height="17"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="360.5" height="17"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </tableHeaderView>
                                         </scrollView>
@@ -207,7 +207,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <popUpButtonCell key="cell" type="push" title="_Cities" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="254" id="1210">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
+                                                <font key="font" metaFont="menu"/>
                                                 <menu key="menu" title="OtherViews" id="253">
                                                     <items>
                                                         <menuItem title="_Cities" state="on" id="254"/>
@@ -307,7 +307,7 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" verticalHuggingPriority="750" id="1298">
-                                                <rect key="frame" x="346" y="17" width="16" height="273"/>
+                                                <rect key="frame" x="347" y="17" width="15" height="273"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="1300">
@@ -398,7 +398,7 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" verticalHuggingPriority="750" id="1301">
-                                                <rect key="frame" x="346" y="17" width="16" height="313"/>
+                                                <rect key="frame" x="347" y="17" width="15" height="313"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="1303">
@@ -614,7 +614,7 @@ Gw
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <popUpButtonCell key="cell" type="push" title="1" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="492" id="1218">
                                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" metaFont="system"/>
+                                                            <font key="font" metaFont="menu"/>
                                                             <menu key="menu" title="OtherViews" id="497">
                                                                 <items>
                                                                     <menuItem title="1" state="on" id="492"/>
@@ -761,7 +761,7 @@ Gw
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <popUpButtonCell key="cell" type="push" title=" " bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="953" id="1226">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" metaFont="system"/>
+                                                            <font key="font" metaFont="menu"/>
                                                             <menu key="menu" title="OtherViews" id="945">
                                                                 <items>
                                                                     <menuItem title=" " state="on" id="953"/>
@@ -796,7 +796,7 @@ Gw
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <popUpButtonCell key="cell" type="push" title=" " bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="961" id="1234">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" metaFont="system"/>
+                                                            <font key="font" metaFont="menu"/>
                                                             <menu key="menu" title="OtherViews" id="940">
                                                                 <items>
                                                                     <menuItem title=" " state="on" id="961"/>
@@ -848,7 +848,7 @@ Gw
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <popUpButtonCell key="cell" type="push" title="13" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="927" id="1231">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" metaFont="system"/>
+                                                            <font key="font" metaFont="menu"/>
                                                             <menu key="menu" title="OtherViews" id="959">
                                                                 <items>
                                                                     <menuItem title="8" id="946"/>
@@ -996,7 +996,7 @@ Gw
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 </textFieldCell>
                                                             </tableColumn>
-                                                            <tableColumn identifier="activeServers" editable="NO" width="207.9010009765625" minWidth="153.9010009765625" maxWidth="1000" id="777">
+                                                            <tableColumn identifier="activeServers" editable="NO" width="208.4010009765625" minWidth="153.9010009765625" maxWidth="1000" id="777">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Active Servers (Not Editable)">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1022,7 +1022,7 @@ Gw
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" verticalHuggingPriority="750" id="1306">
-                                                <rect key="frame" x="428" y="17" width="16" height="139"/>
+                                                <rect key="frame" x="429" y="17" width="15" height="139"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="1308">
@@ -1067,7 +1067,7 @@ Gw
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <popUpButtonCell key="cell" type="push" title="_Fahrenheit" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="903" id="1263">
                                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" metaFont="system"/>
+                                                            <font key="font" metaFont="menu"/>
                                                             <menu key="menu" title="OtherViews" id="891">
                                                                 <items>
                                                                     <menuItem title="_Fahrenheit" state="on" id="903"/>
@@ -1090,7 +1090,7 @@ Gw
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <popUpButtonCell key="cell" type="push" title="_Miles" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="892" id="1256">
                                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" metaFont="system"/>
+                                                            <font key="font" metaFont="menu"/>
                                                             <menu key="menu" title="OtherViews" id="894">
                                                                 <items>
                                                                     <menuItem title="_Miles" state="on" id="892"/>
@@ -1141,7 +1141,7 @@ Gw
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <popUpButtonCell key="cell" type="push" title="_Miles/Hour" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="896" id="1259">
                                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" metaFont="system"/>
+                                                            <font key="font" metaFont="menu"/>
                                                             <menu key="menu" title="OtherViews" id="884">
                                                                 <items>
                                                                     <menuItem title="_Miles/Hour" state="on" id="896"/>
@@ -1157,7 +1157,7 @@ Gw
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <popUpButtonCell key="cell" type="push" title="_Inches" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="905" id="1260">
                                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" metaFont="system"/>
+                                                            <font key="font" metaFont="menu"/>
                                                             <menu key="menu" title="OtherViews" id="904">
                                                                 <items>
                                                                     <menuItem title="_Inches" state="on" id="905"/>
@@ -1988,4 +1988,199 @@ If you are interested in localizing Meteorologist to your language, please conta
         <image name="Meteo-Logo" width="293" height="106"/>
         <image name="NSApplicationIcon" width="128" height="128"/>
     </resources>
+    <classes>
+        <class className="MECityEditor" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MECityEditor.h"/>
+            <relationships>
+                <relationship kind="action" name="addWeatherGroup:"/>
+                <relationship kind="action" name="applyOtherCityPreferences:"/>
+                <relationship kind="action" name="cancelEditing:"/>
+                <relationship kind="action" name="confirmEditing:"/>
+                <relationship kind="action" name="performSearch:"/>
+                <relationship kind="action" name="removeWeatherGroup:"/>
+                <relationship kind="action" name="weatherInfoChanged:"/>
+                <relationship kind="action" name="weatherSourceActivenessChanged:"/>
+                <relationship kind="action" name="weatherSourceChanged:"/>
+                <relationship kind="outlet" name="applyCityPreferences" candidateClass="NSButton"/>
+                <relationship kind="outlet" name="cancelButton" candidateClass="NSButton"/>
+                <relationship kind="outlet" name="cityDescription" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="cityName" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="cityNameTitle" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="cityOrZipSearchTitle" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="cityPopUpButton" candidateClass="NSPopUpButton"/>
+                <relationship kind="outlet" name="cityTable" candidateClass="NSTableView"/>
+                <relationship kind="outlet" name="cityTableHeaderView" candidateClass="NSTableHeaderView"/>
+                <relationship kind="outlet" name="confirmButton" candidateClass="NSButton"/>
+                <relationship kind="outlet" name="currentWeatherItems" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="currentWeatherItemsTable" candidateClass="NSTableHeaderView"/>
+                <relationship kind="outlet" name="forecastPropertyTable" candidateClass="NSTableView"/>
+                <relationship kind="outlet" name="longTermForecastItems" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="longTermForecastItemsTable" candidateClass="NSTableHeaderView"/>
+                <relationship kind="outlet" name="onlyTheFirstEightDescription" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="progress" candidateClass="NSProgressIndicator"/>
+                <relationship kind="outlet" name="search" candidateClass="NSButton"/>
+                <relationship kind="outlet" name="searchTerm" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="serverIsActive" candidateClass="NSButton"/>
+                <relationship kind="outlet" name="tabView" candidateClass="NSTabView"/>
+                <relationship kind="outlet" name="weatherDescription" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="weatherInfos" candidateClass="NSPopUpButton"/>
+                <relationship kind="outlet" name="weatherModules" candidateClass="NSPopUpButton"/>
+                <relationship kind="outlet" name="weatherPropertyTable" candidateClass="NSOutlineView"/>
+                <relationship kind="outlet" name="weatherServersTitle" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="window" candidateClass="NSWindow"/>
+            </relationships>
+        </class>
+        <class className="MEController" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MEController.h"/>
+            <relationships>
+                <relationship kind="action" name="editCity:"/>
+                <relationship kind="action" name="newCity:"/>
+                <relationship kind="action" name="refreshCallback:"/>
+                <relationship kind="action" name="removeCity:"/>
+                <relationship kind="action" name="updateMenuNow:"/>
+                <relationship kind="outlet" name="CityTableHeader" candidateClass="NSTableHeaderView"/>
+                <relationship kind="outlet" name="addCity" candidateClass="NSButton"/>
+                <relationship kind="outlet" name="alertManager" candidateClass="MFAlertManager"/>
+                <relationship kind="outlet" name="cityEditor" candidateClass="MECityEditor"/>
+                <relationship kind="outlet" name="cityTable" candidateClass="NSTableView"/>
+                <relationship kind="outlet" name="cityTableDescriptorText" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="downloadWindow" candidateClass="NSWindow"/>
+                <relationship kind="outlet" name="downloadWindowImage" candidateClass="NSImageView"/>
+                <relationship kind="outlet" name="downloadWindowName" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="downloadWindowProgress" candidateClass="NSProgressIndicator"/>
+                <relationship kind="outlet" name="downloadWindowSize" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="downloadWindowText" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="editCity" candidateClass="NSButton"/>
+                <relationship kind="outlet" name="prefTab" candidateClass="NSTabView"/>
+                <relationship kind="outlet" name="prefsController" candidateClass="MEPrefs"/>
+                <relationship kind="outlet" name="prefsWindow" candidateClass="NSWindow"/>
+                <relationship kind="outlet" name="removeCity" candidateClass="NSButton"/>
+                <relationship kind="outlet" name="updateMenu" candidateClass="NSButton"/>
+                <relationship kind="outlet" name="versionTF" candidateClass="NSTextField"/>
+            </relationships>
+        </class>
+        <class className="MEPrefs" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MEPrefs.h"/>
+            <relationships>
+                <relationship kind="action" name="applyPrefs:"/>
+                <relationship kind="action" name="checkNewServerErrorsNow:"/>
+                <relationship kind="action" name="checkNewVersionsNow:"/>
+                <relationship kind="action" name="chooseAlertSong:"/>
+                <relationship kind="action" name="displayLocationClicked:"/>
+                <relationship kind="action" name="openDonatation:"/>
+                <relationship kind="action" name="openEmail:"/>
+                <relationship kind="action" name="openGroupPage:"/>
+                <relationship kind="action" name="openHomePage:"/>
+                <relationship kind="action" name="openSMS:"/>
+                <relationship kind="action" name="outletAction:"/>
+                <relationship kind="action" name="resetPrefs:"/>
+                <relationship kind="action" name="revertPrefs:"/>
+                <relationship kind="outlet" name="aboutHomepage" candidateClass="NSButton"/>
+                <relationship kind="outlet" name="aboutWebSupport" candidateClass="NSButton"/>
+                <relationship kind="outlet" name="alertEmail" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="alertOptions" candidateClass="NSMatrix"/>
+                <relationship kind="outlet" name="alertSMS" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="alertSong" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="allAboutMeteo" candidateClass="NSScrollView"/>
+                <relationship kind="outlet" name="applyButton" candidateClass="NSButton"/>
+                <relationship kind="outlet" name="autoUpdateTime" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="changeLocationsMinutesText" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="changeUpdateTime" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="checkNewServerErrors" candidateClass="NSButton"/>
+                <relationship kind="outlet" name="checkNewServerErrorsNow" candidateClass="NSButton"/>
+                <relationship kind="outlet" name="checkNewVersions" candidateClass="NSButton"/>
+                <relationship kind="outlet" name="checkNewVersionsNow" candidateClass="NSButton"/>
+                <relationship kind="outlet" name="checkProgress" candidateClass="NSProgressIndicator"/>
+                <relationship kind="outlet" name="checkResult" candidateClass="NSTextView"/>
+                <relationship kind="outlet" name="currentWeatherBox" candidateClass="NSBox"/>
+                <relationship kind="outlet" name="cycleMinutesText" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="cycleMode" candidateClass="NSMatrix"/>
+                <relationship kind="outlet" name="cycleUpdateTime" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="degreeUnits" candidateClass="NSPopUpButton"/>
+                <relationship kind="outlet" name="degreesName" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="displayCityName" candidateClass="NSButton"/>
+                <relationship kind="outlet" name="displayDayImage" candidateClass="NSButton"/>
+                <relationship kind="outlet" name="displayLocationBox" candidateClass="NSBox"/>
+                <relationship kind="outlet" name="displayLocationText" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="displayMenuIcon" candidateClass="NSButton"/>
+                <relationship kind="outlet" name="displayTemp" candidateClass="NSButton"/>
+                <relationship kind="outlet" name="displayTodayInSubmenu" candidateClass="NSButton"/>
+                <relationship kind="outlet" name="distanceName" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="distanceUnits" candidateClass="NSPopUpButton"/>
+                <relationship kind="outlet" name="dockIconBox" candidateClass="NSBox"/>
+                <relationship kind="outlet" name="dockIconFontColorName" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="dockIconFontName" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="dockIconImageOpacityName" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="embedControls" candidateClass="NSButton"/>
+                <relationship kind="outlet" name="explainGlobalUnits" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="extendedForecastBox" candidateClass="NSBox"/>
+                <relationship kind="outlet" name="forecastDaysNumber" candidateClass="NSPopUpButton"/>
+                <relationship kind="outlet" name="forecastDaysNumberLabel" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="forecastDaysOn" candidateClass="NSButton"/>
+                <relationship kind="outlet" name="forecastInline" candidateClass="NSButton"/>
+                <relationship kind="outlet" name="generalBox" candidateClass="NSBox"/>
+                <relationship kind="outlet" name="generalDuplicate" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="generalSubMenu" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="hideCF" candidateClass="NSButton"/>
+                <relationship kind="outlet" name="imageOpacity" candidateClass="NSSlider"/>
+                <relationship kind="outlet" name="killOtherMeteo" candidateClass="NSButton"/>
+                <relationship kind="outlet" name="logMessagesToConsole" candidateClass="NSButton"/>
+                <relationship kind="outlet" name="menuBarBox" candidateClass="NSBox"/>
+                <relationship kind="outlet" name="menuBarFontColorName" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="menuBarFontName" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="menuBarFontSizeName" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="menuColor" candidateClass="NSColorWell"/>
+                <relationship kind="outlet" name="menuFontName" candidateClass="NSPopUpButton"/>
+                <relationship kind="outlet" name="menuFontSize" candidateClass="NSPopUpButton"/>
+                <relationship kind="outlet" name="prefsWindow" candidateClass="NSWindow"/>
+                <relationship kind="outlet" name="pressureName" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="pressureUnits" candidateClass="NSPopUpButton"/>
+                <relationship kind="outlet" name="resetButton" candidateClass="NSButton"/>
+                <relationship kind="outlet" name="revertButton" candidateClass="NSButton"/>
+                <relationship kind="outlet" name="showHumidity" candidateClass="NSButton"/>
+                <relationship kind="outlet" name="speedName" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="speedUnits" candidateClass="NSPopUpButton"/>
+                <relationship kind="outlet" name="tempColor" candidateClass="NSColorWell"/>
+                <relationship kind="outlet" name="tempFont" candidateClass="NSPopUpButton"/>
+                <relationship kind="outlet" name="temperatureBox" candidateClass="NSBox"/>
+                <relationship kind="outlet" name="updateIntervalBox" candidateClass="NSBox"/>
+                <relationship kind="outlet" name="updateMinutesText" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="updateProgress" candidateClass="NSProgressIndicator"/>
+                <relationship kind="outlet" name="updatesAndProblemsBox" candidateClass="NSBox"/>
+                <relationship kind="outlet" name="useGlobalUnits" candidateClass="NSButton"/>
+                <relationship kind="outlet" name="viewForecastInSubmenu" candidateClass="NSButton"/>
+                <relationship kind="outlet" name="weatherAlertsBox" candidateClass="NSBox"/>
+                <relationship kind="outlet" name="whereToDisplay" candidateClass="NSMatrix"/>
+            </relationships>
+        </class>
+        <class className="MFAlertManager" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MFAlertManager.h"/>
+            <relationships>
+                <relationship kind="action" name="kill:"/>
+                <relationship kind="outlet" name="beeper" candidateClass="MFBeeper"/>
+                <relationship kind="outlet" name="clearLogButton" candidateClass="NSButton"/>
+                <relationship kind="outlet" name="displayer" candidateClass="MFMessageDisplay"/>
+                <relationship kind="outlet" name="emailer" candidateClass="MFEmailer"/>
+                <relationship kind="outlet" name="killSoundsButton" candidateClass="NSButton"/>
+                <relationship kind="outlet" name="player" candidateClass="MFSongPlayer"/>
+                <relationship kind="outlet" name="weatherAlertsPanel" candidateClass="NSPanel"/>
+            </relationships>
+        </class>
+        <class className="MFBeeper" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MFBeeper.h"/>
+        </class>
+        <class className="MFEmailer" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MFEmailer.h"/>
+        </class>
+        <class className="MFMessageDisplay" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MFMessageDisplay.h"/>
+            <relationships>
+                <relationship kind="action" name="clearLog:"/>
+                <relationship kind="outlet" name="message" candidateClass="NSTextView"/>
+            </relationships>
+        </class>
+        <class className="MFSongPlayer" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MFSongPlayer.h"/>
+        </class>
+    </classes>
 </document>

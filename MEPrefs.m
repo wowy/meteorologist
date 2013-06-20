@@ -332,30 +332,29 @@
 
 - (IBAction)checkNewVersionsNow:(id)sender
 {
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init]; // make an autorelease pool for this thread
-	if([[MEPrefs sharedInstance] logMessagesToConsole])
-	{
-		NSLog(@"Checking for new version of Meteo.");
-	}
-	// this is just so much easier
-	// Get the application bundle version
-	NSString *thisVersion = [[[NSBundle bundleForClass:[self class]] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+	@autoreleasepool { // make an autorelease pool for this thread
+		if([[MEPrefs sharedInstance] logMessagesToConsole])
+		{
+			NSLog(@"Checking for new version of Meteo.");
+		}
+		// this is just so much easier
+		// Get the application bundle version
+		NSString *thisVersion = [[[NSBundle bundleForClass:[self class]] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
 
-	NSString *versionXML = @"http://heat-meteo.sourceforge.net/version.xml";
-	NSString *escapedUrl = (NSString*)CFURLCreateStringByAddingPercentEscapes(NULL,(CFStringRef)versionXML,NULL,NULL,kCFStringEncodingUTF8);
-	NSURL *versionUrl = [NSURL URLWithString:escapedUrl];
-	[escapedUrl release];
-	
-	NSDictionary *versionxml = [NSDictionary dictionaryWithContentsOfURL:versionUrl];
-	
-	if (!versionxml)
-	{ // check to see that we had a successful download
-		NSLog(@"Unable to retrieve version from the server.");
-		return;
-	}
-	NSString *newVer = [versionxml objectForKey:@"version"];
+		NSString *versionXML = @"http://heat-meteo.sourceforge.net/version.xml";
+		NSString *escapedUrl = (NSString*)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,(CFStringRef)versionXML,NULL,NULL,kCFStringEncodingUTF8));
+		NSURL *versionUrl = [NSURL URLWithString:escapedUrl];
+		
+		NSDictionary *versionxml = [NSDictionary dictionaryWithContentsOfURL:versionUrl];
+		
+		if (!versionxml)
+		{ // check to see that we had a successful download
+			NSLog(@"Unable to retrieve version from the server.");
+			return;
+		}
+		NSString *newVer = [versionxml objectForKey:@"version"];
 #ifdef DEBUG
-	NSLog(@"This version is %@, the new version is %@", thisVersion, newVer);
+		NSLog(@"This version is %@, the new version is %@", thisVersion, newVer);
 #endif
 
     if (newVer) {
@@ -370,12 +369,12 @@
                                                           NSLocalizedString(@"Cancel",@""),
                                                           nil);
             if (returnCode == NSAlertDefaultReturn)
-			{
-				// visit website
+				{
+					// visit website
                 [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[@"http://heat-meteo.sourceforge.net"
-																			 stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
-				[NSApp terminate:nil];
-			}
+																				 stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+					[NSApp terminate:nil];
+				}
         } else if (sender != nil)
         {
             NSRunInformationalAlertPanel(NSLocalizedString(@"No New Version",@""),
@@ -393,7 +392,7 @@
                                          nil);
     
     }
-	[pool release];
+	}
 }
 
 - (NSComparisonResult)compareVersion:(NSString *)versionA toVersion:(NSString *)versionB
@@ -498,7 +497,7 @@
         newType = [self getCharType:character];
         if (oldType != newType || oldType == kPeriodType) {
             // We've reached a new segment
-            [parts addObject:[[s copy] autorelease]];
+            [parts addObject:[s copy]];
             [s setString:character];
         } else {
             // Add character to string and continue
@@ -509,7 +508,6 @@
     
     // Add the last part onto the array
     [parts addObject:s];
-    [s release];
     
     return parts;
 }

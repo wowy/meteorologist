@@ -16,18 +16,13 @@
     self = [super init];
     if(self)
     {
-        forecastArrays = [arrays retain];
+        forecastArrays = arrays;
         isFirst = YES;
         [self nextDay:NO];
     }
     return self;
 }
 
-- (void)dealloc
-{
-    [forecastArrays release]; /* JRC - was autorelease */
-    [super dealloc];
-}
 
 - (int)compareDay:(NSString *)day withDay:(NSString *)other
 {
@@ -272,9 +267,9 @@
     self = [super init];
     if(self)
     {
-        moduleClasses = [[MEWeather moduleClasses] retain];
+        moduleClasses = [MEWeather moduleClasses];
                                                  
-        modules = [[NSMutableArray array] retain];
+        modules = [NSMutableArray array];
         
         NSEnumerator *keyEnum = [dict keyEnumerator];
         NSString *key;
@@ -295,7 +290,7 @@
                 if([[class sourceName] isEqualToString:key])
                 {
                     if(code != nil)
-                        [modules addObject:[[[class alloc] initWithCode:code info:info active:active] autorelease]];
+                        [modules addObject:[[class alloc] initWithCode:code info:info active:active]];
                     break;
                 }
             }
@@ -308,18 +303,9 @@
     return self;
 }
 
-- (void)dealloc
-{
-    [modules release];
-    [moduleClasses release];
-    [forecastEnum release];
-    [super dealloc];
-}
 
 - (void)newForecastEnumeratorForMods:(NSArray *)mods
 {
-	if (forecastEnum) // JRC
-		[forecastEnum release];
 
     NSMutableArray *arrayOfForecasts = [NSMutableArray array];
     

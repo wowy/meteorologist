@@ -22,13 +22,8 @@ MEWeatherModuleParser *sharedWeatherModuleParser = nil;
     if(self)
     {
         NSString *path = [[NSBundle mainBundle] pathForResource:@"weather" ofType:@"xml"];
-        moduleDict = [[NSDictionary dictionaryWithContentsOfFile:path] retain];
+        moduleDict = [NSDictionary dictionaryWithContentsOfFile:path];
         
-        if(!path || !moduleDict)
-        {
-            //error
-            [self release];
-        }
     }
     return self;
 }
@@ -46,11 +41,6 @@ MEWeatherModuleParser *sharedWeatherModuleParser = nil;
     return [moduleDict allKeys];
 }
 
-- (void)dealloc
-{
-    [moduleDict autorelease]; /* JRC - was autorelease */
-    [super dealloc];
-}
 
 - (NSData *)loadDataFromWebsite:(NSURL *)url
 {

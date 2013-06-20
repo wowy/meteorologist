@@ -27,22 +27,14 @@
 		dataIsLoaded = NO;
         weatherData = nil;
 		
-		code = [theCode retain];
-		info = [theInfo retain];
+		code = theCode;
+		info = theInfo;
 		
         supplyingOldData = YES;
         active = isActive;
 		debug = YES;
     }
     return self;
-}
-
-- (void)dealloc
-{
-    [weatherData autorelease]; /* JRC - was autorelease */
-    [code autorelease];
-    [info autorelease];
-    [super dealloc];
 }
 
 + (NSString *)sourceName
@@ -83,7 +75,7 @@
     if(!dataIsLoaded && (code != nil))
         [self loadWeatherData];
 	
-    return [[[weatherData objectForKey:key] copy] autorelease];
+    return [[weatherData objectForKey:key] copy];
 }
 
 - (NSString *)stringForKey:(NSString *)key
@@ -91,7 +83,7 @@
     if(!dataIsLoaded && (code != nil))
         [self loadWeatherData];
 	
-    return [[[weatherData objectForKey:key] copy] autorelease];
+    return [[weatherData objectForKey:key] copy];
 }
 
 - (NSImage *)imageForKey:(NSString *)key inDock:(BOOL)dock
@@ -250,15 +242,14 @@ NSImage *imageForName(NSString *name, BOOL inDock)
 {
     NSString *fileName;
     if (!inDock) {
-        fileName = [[[NSBundle mainBundle] pathForImageResource:[NSString stringWithFormat:@"MB-%@",name]] retain];
+        fileName = [[NSBundle mainBundle] pathForImageResource:[NSString stringWithFormat:@"MB-%@",name]];
     } else {    
-        fileName = [[[NSBundle mainBundle] pathForResource:name ofType:@"tiff"] retain];
+        fileName = [[NSBundle mainBundle] pathForResource:name ofType:@"tiff"];
     }
     
     NSImage *image = [[NSImage alloc] initWithContentsOfFile:fileName];
-    [fileName release];
     
-    return [image autorelease];
+    return image;
 }
 
 
@@ -325,16 +316,15 @@ NSImage *imageForName(NSString *name, BOOL inDock)
 {
     NSImage *img = nil;
     
-    NSString *name = [[[string lastPathComponent] stringByDeletingPathExtension] retain];
+    NSString *name = [[string lastPathComponent] stringByDeletingPathExtension];
     int val = [name intValue];
-    [name release];
     
     NSString *imageName;
     
     if([key isEqualToString:@"Moon Phase"])
     {
         NSString *fileName = [[NSBundle mainBundle] pathForImageResource:@"Moon"];
-        return [[[NSImage alloc] initWithContentsOfFile:fileName] autorelease];
+        return [[NSImage alloc] initWithContentsOfFile:fileName];
     }
     switch(val)
     {
@@ -424,7 +414,6 @@ NSImage *imageForName(NSString *name, BOOL inDock)
 {
     if(![super loadWeatherData])
     {
-        [weatherData autorelease];
         weatherData = nil;
         return NO;
     }
@@ -507,9 +496,8 @@ NSImage *imageForName(NSString *name, BOOL inDock)
 	//NSString *rawUrl = [NSString stringWithFormat:@"http://www.weather.com/outlook/travel/businesstraveler/map/%@?bypassredirect=true",code];
 	NSString *rawUrl = [NSString stringWithFormat:@"http://www.weather.com/weather/map/classic/%@?bypassredirect=true",code];
 	
-    NSString *escapedUrl = (NSString*)CFURLCreateStringByAddingPercentEscapes(NULL,(CFStringRef)rawUrl,NULL,NULL,kCFStringEncodingUTF8);
+    NSString *escapedUrl = (NSString*)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,(CFStringRef)rawUrl,NULL,NULL,kCFStringEncodingUTF8));
 	radarUrl = [NSURL URLWithString:escapedUrl];
-    [escapedUrl release];
 	
 	radarData = [[MEWebFetcher sharedInstance] fetchURLtoString:radarUrl];	// JRC
 	radarData = [radarData stringByTrimmingCharactersInSet:set];
@@ -998,9 +986,8 @@ NSImage *imageForName(NSString *name, BOOL inDock)
 	
 	NSString *rawUrl = [NSString stringWithFormat:@"http://mw.weather.com/tenday/%@?family=webkit",code];
 
-	NSString *escapedUrl = (NSString*)CFURLCreateStringByAddingPercentEscapes(NULL,(CFStringRef)rawUrl,NULL,NULL,kCFStringEncodingUTF8);
+	NSString *escapedUrl = (NSString*)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,(CFStringRef)rawUrl,NULL,NULL,kCFStringEncodingUTF8));
 	extendedWeatherUrl = [NSURL URLWithString:escapedUrl];
-	[escapedUrl release];
 
 	extendedWeatherDataString = [[MEWebFetcher sharedInstance] fetchURLtoString:extendedWeatherUrl];	// JRC
 	extendedWeatherDataString = [extendedWeatherDataString stringByTrimmingCharactersInSet:set];
@@ -1045,9 +1032,8 @@ NSImage *imageForName(NSString *name, BOOL inDock)
 	
 	rawUrl = [NSString stringWithFormat:@"http://mw.weather.com/tenday/%@?family=webkit&pagenumber=2",code];
 	
-	escapedUrl = (NSString*)CFURLCreateStringByAddingPercentEscapes(NULL,(CFStringRef)rawUrl,NULL,NULL,kCFStringEncodingUTF8);
+	escapedUrl = (NSString*)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,(CFStringRef)rawUrl,NULL,NULL,kCFStringEncodingUTF8));
 	extendedWeatherUrl = [NSURL URLWithString:escapedUrl];
-	[escapedUrl release];
 	
 	extendedWeatherDataString = [[MEWebFetcher sharedInstance] fetchURLtoString:extendedWeatherUrl];	// JRC
 	extendedWeatherDataString = [extendedWeatherDataString stringByTrimmingCharactersInSet:set];
@@ -1113,13 +1099,11 @@ NSImage *imageForName(NSString *name, BOOL inDock)
 		NSLog(weatherForUrlString,@"");
 	}
 	
-	NSString *escapedUrl = (NSString*)CFURLCreateStringByAddingPercentEscapes(NULL,(CFStringRef)weatherForUrlString,NULL,NULL,kCFStringEncodingUTF8);
+	NSString *escapedUrl = (NSString*)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,(CFStringRef)weatherForUrlString,NULL,NULL,kCFStringEncodingUTF8));
 	weatherForURL = [NSURL URLWithString:escapedUrl];
-	[escapedUrl release];
 
-	escapedUrl = (NSString*)CFURLCreateStringByAddingPercentEscapes(NULL,(CFStringRef)linkUrlString,NULL,NULL,kCFStringEncodingUTF8);
+	escapedUrl = (NSString*)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,(CFStringRef)linkUrlString,NULL,NULL,kCFStringEncodingUTF8));
 	linkUrl = [NSURL URLWithString:escapedUrl];
-	[escapedUrl release];
 	
 	if(!weatherForURL)
 	{
@@ -1168,12 +1152,10 @@ NSImage *imageForName(NSString *name, BOOL inDock)
 	if([weatherData count] > 5)
 	{
 		supplyingOldData = NO;
-		[lastWeather autorelease];
 	}
 	else
 	{
 		supplyingOldData = YES;
-		[weatherData autorelease];
 		weatherData = lastWeather;
 	}
 
@@ -1252,7 +1234,7 @@ NSImage *imageForName(NSString *name, BOOL inDock)
             imageFileName = [[NSBundle mainBundle] pathForImageResource:@"Moon"];
         }
         
-        return [[[NSImage alloc] initWithContentsOfFile:imageFileName] autorelease];
+        return [[NSImage alloc] initWithContentsOfFile:imageFileName];
     }
 	
     if([name hasSuffix:@"chanceflurries"])
@@ -1351,7 +1333,6 @@ NSImage *imageForName(NSString *name, BOOL inDock)
 {
     if(![super loadWeatherData])
     {
-        [weatherData autorelease];
         weatherData = nil;
         return NO;
     }
@@ -2447,17 +2428,14 @@ NSImage *imageForName(NSString *name, BOOL inDock)
     if([weatherData count] > 5)
     {
         supplyingOldData = NO;
-        [lastWeather autorelease]; /* JRC - was autorelease */
     }
     else
     {
-		NSLog(@"Only obtained %d datapoints, re-using old data", [weatherData count]);
+		NSLog(@"Only obtained %lu datapoints, re-using old data", [weatherData count]);
         supplyingOldData = YES;
-        [weatherData autorelease]; /* JRC - was autorelease */
         weatherData = lastWeather;
     }
     
-	[string release];
 	return YES;
 }
 
@@ -2636,10 +2614,10 @@ NSImage *imageForName(NSString *name, BOOL inDock)
     
     if([key isEqualToString:@"Moon Phase"])
     {
-        img = [[[NSImage alloc] initWithContentsOfFile:@"/Library/Application Support/Meteo/Weather Status/Moon.tiff"] autorelease];
+        img = [[NSImage alloc] initWithContentsOfFile:@"/Library/Application Support/Meteo/Weather Status/Moon.tiff"];
         
         if(!img)
-            [[[NSImage alloc] initWithContentsOfFile:[@"~/Library/Application Support/Meteo/Weather Status/Moon.tiff" stringByExpandingTildeInPath]]  autorelease];
+            [[NSImage alloc] initWithContentsOfFile:[@"~/Library/Application Support/Meteo/Weather Status/Moon.tiff" stringByExpandingTildeInPath]];
         
         if(img)
             return img;
@@ -2699,7 +2677,7 @@ NSImage *imageForName(NSString *name, BOOL inDock)
 		NSData *dat = [[NSURL URLWithString:[string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]
 					   resourceDataUsingCache:YES];
         if(dat)
-            img = [[[NSImage alloc] initWithData:dat] autorelease];
+            img = [[NSImage alloc] initWithData:dat];
     }
     
     return img;
@@ -2711,7 +2689,6 @@ NSImage *imageForName(NSString *name, BOOL inDock)
 #define NUM_NWS_FORECAST_ITEMS	8
     if(![super loadWeatherData])
     {
-        [weatherData autorelease];
         weatherData = nil;
         return NO;
     }
@@ -2731,7 +2708,7 @@ NSImage *imageForName(NSString *name, BOOL inDock)
 																  //url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.crh.noaa.gov/data/forecasts/%@",code]];
     url = [NSURL URLWithString:[weatherQueryURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 	
-    string = [[[NSString alloc] initWithContentsOfURL:url] autorelease];
+    string = [[NSString alloc] initWithContentsOfURL:url];
     
     if(!string)
         return NO;
@@ -2862,9 +2839,8 @@ NSImage *imageForName(NSString *name, BOOL inDock)
         if(alertStr)
         {
             
-            NSString *loadedAlertString = [[[NSString alloc]
-											initWithContentsOfURL:[NSURL URLWithString:[alertStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]]
-										   autorelease];
+            NSString *loadedAlertString = [[NSString alloc]
+											initWithContentsOfURL:[NSURL URLWithString:[alertStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
             
             //NSString *loadedAlertString = [[[NSString alloc] initWithData:[[NSURL URLWithString:alertStr] resourceDataUsingCache:NO] encoding:NSASCIIStringEncoding] autorelease];
             
@@ -3299,13 +3275,11 @@ NSImage *imageForName(NSString *name, BOOL inDock)
     if([weatherData count] > 5)
     {
         supplyingOldData = NO;
-        [lastWeather autorelease];
     }
     else
     {
         supplyingOldData = YES;
 		if (lastWeather != nil) {
-			[weatherData autorelease];
 			weatherData = lastWeather;
 		}	// No previous weather data? We'll use what little we have. _RAM
     }
