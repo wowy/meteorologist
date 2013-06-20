@@ -244,8 +244,7 @@
             [item insertObject:obj atIndex:index];
         else
             [[item objectForKey:@"subarray"] insertObject:obj atIndex:index];
-            
-        [obj autorelease];
+
         [subArray removeObject:[NSNull null]];
     }
     
@@ -633,7 +632,7 @@ void catchException(NSException *exception)
     
     if(row != -1)
     {
-        MECity *city = [[cityTable dataSource] objectAtIndex:row];
+        MECity *city = [(NSMutableArray *)[cityTable dataSource] objectAtIndex:row];
         [city setActive:![city isActive]];
     }
 } // swicthCityEnabling
@@ -908,8 +907,7 @@ void catchException(NSException *exception)
 													action:@selector(dummy) 
 											 keyEquivalent:@""];
 		[theCityItem setTarget:self];
-		
-		[self addDataToMenu:&menu forCity:&city newData:newData]; // crashes here.
+		[self addDataToMenu:menu forCity:&city newData:newData]; // crashes here.
 		
 		*linkString = [[city weatherReport] stringForKey:@"Weather Link"
                                                   units:[NSArray arrayWithObject:@"None"]
@@ -1059,7 +1057,7 @@ void catchException(NSException *exception)
 															   inDock:NO];
 		[theCityItem setImage:[cityWeatherImage retain]]; // retain might not be necessary
 		
-		[self addDataToMenu:&subMenu forCity:&city newData:newData];
+		[self addDataToMenu:subMenu forCity:&city newData:newData];
 
 		[cityWeatherImage release];
 	}
@@ -1512,32 +1510,27 @@ void catchException(NSException *exception)
 /* called-by: threadedGenerateMenu:
 
 */
-- (void)addDataToMenu:(NSMenu **)theMenu
+- (void)addDataToMenu:(NSMenu *)theMenu
 			  forCity:(MECity **)city
 			  newData:(BOOL *)newData
 {
-	NSMenu *tempMenu = *theMenu;
+	NSMenu *tempMenu = theMenu;
 	NSString *linkString = nil;
 
-	NSAssert([*theMenu retainCount],@"theMenu retainCount was 0 at the very beginning1");
 
 	if(*newData)
 		[[*city weatherReport] prepareNewServerData];
 
-	NSAssert([*theMenu retainCount],@"theMenu retainCount was 0 at the very beginning2");
         
 	NSArray *weatherArray = [*city weatherAttributes];
 	NSArray *forecastArray = [*city forecastAttributes];
 	MEWeather *report = [*city weatherReport];
-	NSAssert([*theMenu retainCount],@"theMenu retainCount was 0 at the very beginning3");
     
 	[report newForecastEnumeratorForMods:[MEWeather moduleNames]];
-	NSAssert([*theMenu retainCount],@"theMenu retainCount was 0 at the very beginning4");
     
 	if([prefsController displayTodayInSubmenu])
 	{
-		NSAssert([*theMenu retainCount],@"theMenu had a retain count of 0");
-		NSMenuItem *item = [*theMenu addItemWithTitle:NSLocalizedString(@"Current Conditions",@"") action:nil keyEquivalent:@""];
+		NSMenuItem *item = [theMenu addItemWithTitle:NSLocalizedString(@"Current Conditions",@"") action:nil keyEquivalent:@""];
 		NSMenu *subMenu = [[[NSMenu alloc] init] autorelease];
 		[item setSubmenu:subMenu];
         
@@ -1548,13 +1541,13 @@ void catchException(NSException *exception)
         
 	if([prefsController forecastDaysOn])
 	{
-		tempMenu = *theMenu;
+		tempMenu = theMenu;
             
 		if([prefsController viewForecastInSubmenu])
 		{
 			NSString *extFor = NSLocalizedString(@"Extended Forecast",@"");
         
-			NSMenuItem *item = [*theMenu addItemWithTitle:extFor action:nil keyEquivalent:@""];
+			NSMenuItem *item = [theMenu addItemWithTitle:extFor action:nil keyEquivalent:@""];
 			NSMenu *subMenu = [[[NSMenu alloc] init] autorelease];
 			[item setSubmenu:subMenu];
             

@@ -159,13 +159,8 @@
 - (MECity *)editCity:(MECity *)city otherCities:(NSArray *)others withPrefsWindow:(NSWindow *)prefsWin
 {
 	int modalVal;
-	if (currentCity)
-		[currentCity autorelease]; /* JRC - was autorelease*/
-    currentCity = [city retain];
-    
-	if (otherCities)
-		[otherCities autorelease]; /* JRC - was autorelease*/
-    otherCities = [others retain];
+    currentCity = city;
+    otherCities = others;
     
 	/* add the "other cities" to the popup that lets you copy settings */
     [cityPopUpButton removeAllItems];
@@ -258,14 +253,14 @@
     if((aTableView == weatherPropertyTable || aTableView == forecastPropertyTable) && 
 		[aCell isMemberOfClass:[NSButtonCell class]]) 
 	{
-        [aCell setState:[[[[aTableView dataSource] objectAtIndex:rowIndex] objectForKey:@"enabled"] boolValue]];
+        [aCell setState:[[[(NSMutableArray *)[aTableView dataSource] objectAtIndex:rowIndex] objectForKey:@"enabled"] boolValue]];
     }
 
     if((aTableView == weatherPropertyTable || aTableView == forecastPropertyTable) && 
 		[aCell isMemberOfClass:[NSPopUpButtonCell class]])
     {
         NSString *key = [aTableColumn identifier];
-        NSMutableDictionary *dict = [[aTableView dataSource] objectAtIndex:rowIndex];
+        NSMutableDictionary *dict = [(NSMutableArray *)[aTableView dataSource] objectAtIndex:rowIndex];
         
         if([key isEqualToString:@"units"])
         {
@@ -443,7 +438,7 @@
     NSMutableDictionary *dict;
     
     if(table == forecastPropertyTable)
-        dict = [[table dataSource] objectAtIndex:row];
+        dict = [(NSMutableArray *)[table dataSource] objectAtIndex:row];
     else
         dict = [(NSOutlineView *)table itemAtRow:row];
     
@@ -472,7 +467,7 @@
     NSMutableDictionary *dict;
     
     if(table == forecastPropertyTable)
-        dict = [[table dataSource] objectAtIndex:row];
+        dict = [(NSMutableArray *)[table dataSource] objectAtIndex:row];
     else
         dict = [(NSOutlineView *)table itemAtRow:row];
     
@@ -502,7 +497,7 @@
             return;
         
         NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:2];
-		[dict addEntriesFromDictionary:[[cityTable dataSource] dataForRow:row]];
+		[dict addEntriesFromDictionary:[(MECitySearchResultsTable *)[cityTable dataSource] dataForRow:row]];
         if (dict != nil)
 			[currentCity setCodeInfo:dict forServer:[weatherModules titleOfSelectedItem]];
     }
