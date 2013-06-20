@@ -22,7 +22,7 @@
 {
     self = [super init];
     if(self)
-        alertingCities = [[NSMutableArray array] retain];
+        alertingCities = [NSMutableArray array];
 	
     return self;
 }
@@ -283,9 +283,9 @@
 
     // Create the URL.
 	
-    url = [NSURL URLWithString:[(NSString*)
-								CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)message,
-																		NULL, NULL, kCFStringEncodingUTF8) autorelease]];
+    url = [NSURL URLWithString:(NSString*)
+								CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)message,
+																		NULL, NULL, kCFStringEncodingUTF8))];
     assert(url != nil);
 	
     // Open the URL.
@@ -304,9 +304,9 @@
 	
     // Create the URL.
 	
-    url = [NSURL URLWithString:[(NSString*)
-								CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)message,
-																		NULL, NULL, kCFStringEncodingUTF8) autorelease]];
+    url = [NSURL URLWithString:(NSString*)
+								CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)message,
+																		NULL, NULL, kCFStringEncodingUTF8))];
 	//NSLog(@"Email URL: %@.",message);
     assert(url != nil);
 	

@@ -45,7 +45,7 @@
         return [[self objectAtIndex:rowIndex] cityName];
     else if([key isEqualToString:@"active"])
     {
-        NSButtonCell *aCell = [[[NSButtonCell alloc] init] autorelease];
+        NSButtonCell *aCell = [[NSButtonCell alloc] init];
     
         [aCell setButtonType:NSSwitchButton];
         [aCell setTitle:@""];
@@ -105,7 +105,7 @@
     {
         int index = [aRow intValue];
         
-        id obj = [[self objectAtIndex:index] retain];
+        id obj = [self objectAtIndex:index];
         [self replaceObjectAtIndex:index withObject:[NSNull null]];
         
         [self insertObject:obj atIndex:row];
@@ -206,7 +206,7 @@
     {
         int ind = [aRow intValue];
         
-        id obj = [[outlineView itemAtRow:ind] retain];
+        id obj = [outlineView itemAtRow:ind];
         
         
         //find the real item
@@ -363,9 +363,9 @@ void catchException(NSException *exception)
 	[[prefTab tabViewItemAtIndex:3] setLabel:NSLocalizedString(@"alertsTabTitle",@"")];
 	[[prefTab tabViewItemAtIndex:4] setLabel:NSLocalizedString(@"aboutTabTitle",@"")];
 	
-	[[[cityTable tableColumns] objectAtIndex:0] setHeaderCell:[[[NSTableHeaderCell alloc] initTextCell:NSLocalizedString(@"citiesTabHeaderActiveText",@"")] autorelease]];
-	[[[cityTable tableColumns] objectAtIndex:1] setHeaderCell:[[[NSTableHeaderCell alloc] initTextCell:NSLocalizedString(@"citiesTabHeaderNameText",@"")] autorelease]];
-	[[[cityTable tableColumns] objectAtIndex:2] setHeaderCell:[[[NSTableHeaderCell alloc] initTextCell:NSLocalizedString(@"citiesTabHeaderServersText",@"")] autorelease]];
+	[[[cityTable tableColumns] objectAtIndex:0] setHeaderCell:[[NSTableHeaderCell alloc] initTextCell:NSLocalizedString(@"citiesTabHeaderActiveText",@"")]];
+	[[[cityTable tableColumns] objectAtIndex:1] setHeaderCell:[[NSTableHeaderCell alloc] initTextCell:NSLocalizedString(@"citiesTabHeaderNameText",@"")]];
+	[[[cityTable tableColumns] objectAtIndex:2] setHeaderCell:[[NSTableHeaderCell alloc] initTextCell:NSLocalizedString(@"citiesTabHeaderServersText",@"")]];
 	[cityTableDescriptorText setStringValue:NSLocalizedString(@"citiesTabDescriptonText",nil)];
 	[addCity setTitle:NSLocalizedString(@"addCityTitle",nil)];
 	[editCity setTitle:NSLocalizedString(@"editCityTitle",nil)];
@@ -388,7 +388,6 @@ void catchException(NSException *exception)
     [pop setAutoenablesItems:NO];
     [pop setAltersStateOfSelectedItem:NO];
     [[cityTable tableColumnWithIdentifier:@"activeServers"] setDataCell:pop];
-    [pop release];
 
     NSButtonCell *cell = [[NSButtonCell alloc] init];
     [cell setButtonType:NSSwitchButton];
@@ -397,7 +396,6 @@ void catchException(NSException *exception)
     [[cityTable tableColumnWithIdentifier:@"active"] setDataCell:cell];
     [cell setTarget:self];
     [cell setAction:@selector(swicthCityEnabling)];
-    [cell release];
     
     [cityTable setAutosaveName:@"cityTable"];
     [cityTable registerForDraggedTypes:[NSArray arrayWithObjects:[cityTable autosaveName], nil]];
@@ -420,11 +418,11 @@ void catchException(NSException *exception)
 		{
 			NSLog(@"Meteo configured to load in menubar");
 		}
-		statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
+		statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
 		[statusItem setTitle:@"Loading..."];
 		[statusItem setHighlightMode:YES];
 		
-		NSMenu *tempMenu = [[[NSMenu alloc] init] autorelease];
+		NSMenu *tempMenu = [[NSMenu alloc] init];
 		[[tempMenu addItemWithTitle:@"Please wait while Meteo fetches the weather" action:@selector(dummy) keyEquivalent:@""] setTarget:self];
 		[statusItem setMenu:tempMenu];
 		quitMI = (NSMenuItem *)[tempMenu addItemWithTitle:NSLocalizedString(@"Quit",@"") 
@@ -437,14 +435,14 @@ void catchException(NSException *exception)
     if(!cities)
         cities = [[NSMutableArray alloc] init];
     else
-        cities = [[self citiesForData:cities] retain];
+        cities = [self citiesForData:cities];
     
     [cityTable setDataSource:cities];
     
     if([cities count] == 0)
 	{
-		[cities addObject:[[[MECity alloc] initWithCityAndInfoCodes:[NSMutableDictionary dictionaryWithObjectsAndKeys:[NSMutableDictionary dictionaryWithObjectsAndKeys:@"Cupertino, CA",@"name",@"USCA0273",@"code",nil],@"Weather.com",nil]
-															forCity:@"Cupertino, CA"] autorelease]];
+		[cities addObject:[[MECity alloc] initWithCityAndInfoCodes:[NSMutableDictionary dictionaryWithObjectsAndKeys:[NSMutableDictionary dictionaryWithObjectsAndKeys:@"Cupertino, CA",@"name",@"USCA0273",@"code",nil],@"Weather.com",nil]
+															forCity:@"Cupertino, CA"]];
         [self showCityController:nil];
 	}
         
@@ -576,7 +574,7 @@ void catchException(NSException *exception)
         NSMutableArray *otherCities = [NSMutableArray arrayWithArray:cities];
         [otherCities removeObjectAtIndex:row];
         
-        MECity *newCity = [cityEditor editCity:[[cityToEdit copy] autorelease]
+        MECity *newCity = [cityEditor editCity:[cityToEdit copy]
 								   otherCities:otherCities
 							   withPrefsWindow:prefsWindow];
     
@@ -885,7 +883,7 @@ void catchException(NSException *exception)
 #endif
 			
 			// getting the TIFFRepresentation means we get a copy of the bitmap, so menubar image won't reference same image as dock _RAM
-			*theCityImage = [[[NSImage alloc] initWithData: [[NSApp applicationIconImage] TIFFRepresentation]] autorelease];
+			*theCityImage = [[NSImage alloc] initWithData: [[NSApp applicationIconImage] TIFFRepresentation]];
 			[*theCityImage setScalesWhenResized:YES];
 			[*theCityImage setSize:NSMakeSize(16,16)];
 		}
@@ -1034,7 +1032,7 @@ void catchException(NSException *exception)
 													action:nil
 											 keyEquivalent:@""];
 		
-		NSMenu *subMenu = [[[NSMenu alloc] init] autorelease]; // submenu for the city
+		NSMenu *subMenu = [[NSMenu alloc] init]; // submenu for the city
 		[theCityItem setSubmenu:subMenu]; // Cityname --> subMenu
 
 		*linkString = [[city weatherReport]
@@ -1047,7 +1045,7 @@ void catchException(NSException *exception)
 
 		if (*linkString)
 		{
-			[theCityItem setTarget:[*linkString retain]];
+			[theCityItem setTarget:*linkString];
 			[theCityItem setAction:@selector(openLink:)];
 		}
 
@@ -1055,11 +1053,10 @@ void catchException(NSException *exception)
 																 size:16
 															  modules:[MEWeather moduleNamesSupportingProperty:@"Weather Image"]
 															   inDock:NO];
-		[theCityItem setImage:[cityWeatherImage retain]]; // retain might not be necessary
+		[theCityItem setImage:cityWeatherImage]; // retain might not be necessary
 		
 		[self addDataToMenu:subMenu forCity:&city newData:newData];
 
-		[cityWeatherImage release];
 	}
 } // addSecondaryCitiesToMenu
 
@@ -1075,7 +1072,7 @@ void catchException(NSException *exception)
 		NSMenuItem *controlMenuItem = [menu addItemWithTitle:NSLocalizedString(@"Controls",@"Controls MenuItem") 
                                                       action:nil 
                                                keyEquivalent:@""];
-		submenu = [[[NSMenu alloc] init] autorelease];
+		submenu = [[NSMenu alloc] init];
 		[controlMenuItem setSubmenu:submenu];
 	}
     
@@ -1094,7 +1091,7 @@ void catchException(NSException *exception)
 	citySwitcherMI = (NSMenuItem*)[submenu addItemWithTitle:NSLocalizedString(@"City Switcher",@"City Switcher MenuItem")
 													 action:@selector(showCityController:) 
 											  keyEquivalent:@""];
-	citySwitcherMenu = [[[NSMenu alloc] init] autorelease];
+	citySwitcherMenu = [[NSMenu alloc] init];
 	[citySwitcherMI setSubmenu:citySwitcherMenu];
     
 	NSEnumerator *cityEnum = [cities objectEnumerator];
@@ -1124,154 +1121,150 @@ void catchException(NSException *exception)
 
 - (void)threadedGenerateMenu:(NSNumber *)num
 {
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init]; // make an autorelease pool for this thread
-	[menuDrawLock lock]; // make sure that only one thread is drawing at a time
+	@autoreleasepool { // make an autorelease pool for this thread
+		[menuDrawLock lock]; // make sure that only one thread is drawing at a time
 
-	[prefsController performSelectorOnMainThread:@selector(deactivateInterface) withObject:NULL waitUntilDone:YES];
-	[addCity performSelectorOnMainThread:@selector(setEnabled:) withObject:NULL waitUntilDone:YES];
-	[updateMenu performSelectorOnMainThread:@selector(setEnabled:) withObject:NULL waitUntilDone:YES];
+		[prefsController performSelectorOnMainThread:@selector(deactivateInterface) withObject:NULL waitUntilDone:YES];
+		[addCity performSelectorOnMainThread:@selector(setEnabled:) withObject:NULL waitUntilDone:YES];
+		[updateMenu performSelectorOnMainThread:@selector(setEnabled:) withObject:NULL waitUntilDone:YES];
     
-	[cityTable setDoubleAction:NULL];
+		[cityTable setDoubleAction:NULL];
 
-	if (menu)
-	{
-		[menu release];
-	}
-	menu = [[NSMenu alloc] init];
+		menu = [[NSMenu alloc] init];
 
-	NSString *statusTitle = nil;
-	NSImage *theCityImage = nil;
+		NSString *statusTitle = nil;
+		NSImage *theCityImage = nil;
 
-	BOOL newData   = ([num intValue] & 1);
-	BOOL newCity   = ([num intValue] & 2);
-	BOOL newCities = ([num intValue] & 4);
-	
-	int activeCities = 0;
+		BOOL newData   = ([num intValue] & 1);
+		BOOL newCity   = ([num intValue] & 2);
+		BOOL newCities = ([num intValue] & 4);
+		
+		int activeCities = 0;
     
-	NSString *linkString = nil;
+		NSString *linkString = nil;
 
-	// pick new cities if that option is enabled.
-	[self pickNewCities:&newCities ActiveCities:&activeCities];
+		// pick new cities if that option is enabled.
+		[self pickNewCities:&newCities ActiveCities:&activeCities];
     
-	// pick a new main city if newCity was passed, mainCity is nil, or the mainCity isn't active.
-	if(newCity || !mainCity || ![mainCity isActive])
-	{
-		NSArray *theActiveCities = [self activeCities];
-		if([theActiveCities count])
+		// pick a new main city if newCity was passed, mainCity is nil, or the mainCity isn't active.
+		if(newCity || !mainCity || ![mainCity isActive])
 		{
-			if(!mainCity || ![mainCity isActive]) // there isn't a main city right now, so make the first the active city
+			NSArray *theActiveCities = [self activeCities];
+			if([theActiveCities count])
 			{
-				mainCity = [theActiveCities objectAtIndex:0];
+				if(!mainCity || ![mainCity isActive]) // there isn't a main city right now, so make the first the active city
+				{
+					mainCity = [theActiveCities objectAtIndex:0];
+				}
+				else
+				{
+					// choose a new main city
+					int indexOfCity = [theActiveCities indexOfObject:mainCity];
+                
+					if(indexOfCity == [theActiveCities count]-1 || [theActiveCities count] == 1 || indexOfCity == -1)
+						mainCity = [theActiveCities objectAtIndex:0];
+					else
+						mainCity = [theActiveCities objectAtIndex:indexOfCity + 1];
+				}
 			}
 			else
 			{
-				// choose a new main city
-				int indexOfCity = [theActiveCities indexOfObject:mainCity];
-                
-				if(indexOfCity == [theActiveCities count]-1 || [theActiveCities count] == 1 || indexOfCity == -1)
-					mainCity = [theActiveCities objectAtIndex:0];
-				else
-					mainCity = [theActiveCities objectAtIndex:indexOfCity + 1];
+				mainCity = nil;
 			}
 		}
-		else
-		{
-			mainCity = nil;
-		}
-	}
     
-	// make sure non-active cities have data invalidated
-	if(newData)
-	{
-		NSEnumerator *cityEnum = [cities objectEnumerator];
-		MECity *city;
+		// make sure non-active cities have data invalidated
+		if(newData)
+		{
+			NSEnumerator *cityEnum = [cities objectEnumerator];
+			MECity *city;
         
-		while(city = [cityEnum nextObject])
-		{
-			if(![city isActive])
+			while(city = [cityEnum nextObject])
 			{
-				[[city weatherReport] prepareNewServerData];
-			}
-		}
-	}
-	
-	NSMutableDictionary *menuAttributes = [NSMutableDictionary dictionary];
-	[menuAttributes setObject:[NSFont fontWithName:[prefsController menuFontName] size:[prefsController menuFontSize]] forKey:NSFontAttributeName];
-	[menuAttributes setObject:[prefsController menuColor] forKey:NSForegroundColorAttributeName];
-
-	[self setCityImage:&theCityImage
-		  activeCities:&activeCities
-			   newData:&newData
-			linkString:&linkString
-		   statusTitle:&statusTitle];
-    
-	if(activeCities > 1)
-	{
-		[self addSecondaryCitiesToMenu:&linkString
-							   newData:&newData];
-	}
-
-	// now add all the stuff you always add
-	[self addMainMenuControls];
-    
-	if(isInMenubar)
-	{
-		if(([[statusItem title] isEqualToString:@""] || ![statusItem title]) && ![statusItem image])
-		{
-		   if([prefsController displayCityName])
-			   statusTitle = NSLocalizedString(@"No Weather",@"");
-		   else
-			   statusTitle = @"";
-             
-			[statusItem setAttributedTitle:[[[NSAttributedString alloc] initWithString:statusTitle attributes:menuAttributes] autorelease]];
-			// getting the TIFFRepresentation means we get a copy of the bitmap, so menubar image won't reference same image as dock _RAM
-			theCityImage = [[[NSImage alloc] initWithData: [[NSApp applicationIconImage] TIFFRepresentation]] autorelease];
-			[theCityImage setScalesWhenResized:YES];
-			[theCityImage setSize:NSMakeSize(16,16)];
-		}
-    
-		[cityTable reloadData];
-
-		[self performSelectorOnMainThread:@selector(stopLoadingInMenuBar) withObject:NULL waitUntilDone:YES];
-
-		// I still can't figure out all the stuff that happened up until here in this method,
-		// but I know that if displayMenuIcon is YES and theCityImage is still nil at this point,
-		// this is our last chance to come up with an image. _RAM
-		if ([prefsController displayMenuIcon] && theCityImage == nil)
-		{
-			// getting the TIFFRepresentation means we get a copy of the bitmap, so menubar image won't reference same image as dock _RAM
-			theCityImage = [[[NSImage alloc] initWithData: [[NSApp applicationIconImage] TIFFRepresentation]] autorelease];
-			[theCityImage setScalesWhenResized:YES];
-			[theCityImage setSize:NSMakeSize(16,16)];
-		}
-
-		// likewise, if there is no statusTitle by now, let's make sure there's something to show _RAM
-		if ((statusTitle == nil || [statusTitle isEqualToString: @""]))
-		{
-			// actually, text is required only if we're not to show an icon 
-			if (! [prefsController displayMenuIcon])
-			{
-				statusTitle = @"Meteo";
+				if(![city isActive])
+				{
+					[[city weatherReport] prepareNewServerData];
+				}
 			}
 		}
 		
-		[statusItem performSelectorOnMainThread:@selector(setAttributedTitle:) withObject:[[[NSAttributedString alloc] initWithString:statusTitle attributes:menuAttributes] autorelease] waitUntilDone:YES];
-		[statusItem performSelectorOnMainThread:@selector(setImage:) withObject:theCityImage waitUntilDone:YES];
-		[statusItem performSelectorOnMainThread:@selector(setMenu:) withObject:menu waitUntilDone:YES];
-	}
+		NSMutableDictionary *menuAttributes = [NSMutableDictionary dictionary];
+		[menuAttributes setObject:[NSFont fontWithName:[prefsController menuFontName] size:[prefsController menuFontSize]] forKey:NSFontAttributeName];
+		[menuAttributes setObject:[prefsController menuColor] forKey:NSForegroundColorAttributeName];
 
-	[prefsController performSelectorOnMainThread:@selector(activateInterface) withObject:NULL waitUntilDone:YES];
-	[addCity performSelectorOnMainThread:@selector(setEnabled:) withObject:addCity waitUntilDone:YES];
-	[updateMenu performSelectorOnMainThread:@selector(setEnabled:) withObject:updateMenu waitUntilDone:YES];
+		[self setCityImage:&theCityImage
+			  activeCities:&activeCities
+				   newData:&newData
+				linkString:&linkString
+			   statusTitle:&statusTitle];
     
-	// JRC
-	[refreshMI performSelectorOnMainThread:@selector(setEnabled:) withObject:refreshMI waitUntilDone:YES];
-	[cityTable setDoubleAction:@selector(editCity:)];
-	
-	
-	// cleanup
-	[menuDrawLock unlock];
-	[pool release];
+		if(activeCities > 1)
+		{
+			[self addSecondaryCitiesToMenu:&linkString
+								   newData:&newData];
+		}
+
+		// now add all the stuff you always add
+		[self addMainMenuControls];
+    
+		if(isInMenubar)
+		{
+			if(([[statusItem title] isEqualToString:@""] || ![statusItem title]) && ![statusItem image])
+			{
+			   if([prefsController displayCityName])
+				   statusTitle = NSLocalizedString(@"No Weather",@"");
+			   else
+				   statusTitle = @"";
+             
+				[statusItem setAttributedTitle:[[NSAttributedString alloc] initWithString:statusTitle attributes:menuAttributes]];
+				// getting the TIFFRepresentation means we get a copy of the bitmap, so menubar image won't reference same image as dock _RAM
+				theCityImage = [[NSImage alloc] initWithData: [[NSApp applicationIconImage] TIFFRepresentation]];
+				[theCityImage setScalesWhenResized:YES];
+				[theCityImage setSize:NSMakeSize(16,16)];
+			}
+    
+			[cityTable reloadData];
+
+			[self performSelectorOnMainThread:@selector(stopLoadingInMenuBar) withObject:NULL waitUntilDone:YES];
+
+			// I still can't figure out all the stuff that happened up until here in this method,
+			// but I know that if displayMenuIcon is YES and theCityImage is still nil at this point,
+			// this is our last chance to come up with an image. _RAM
+			if ([prefsController displayMenuIcon] && theCityImage == nil)
+			{
+				// getting the TIFFRepresentation means we get a copy of the bitmap, so menubar image won't reference same image as dock _RAM
+				theCityImage = [[NSImage alloc] initWithData: [[NSApp applicationIconImage] TIFFRepresentation]];
+				[theCityImage setScalesWhenResized:YES];
+				[theCityImage setSize:NSMakeSize(16,16)];
+			}
+
+			// likewise, if there is no statusTitle by now, let's make sure there's something to show _RAM
+			if ((statusTitle == nil || [statusTitle isEqualToString: @""]))
+			{
+				// actually, text is required only if we're not to show an icon 
+				if (! [prefsController displayMenuIcon])
+				{
+					statusTitle = @"Meteo";
+				}
+			}
+			
+			[statusItem performSelectorOnMainThread:@selector(setAttributedTitle:) withObject:[[NSAttributedString alloc] initWithString:statusTitle attributes:menuAttributes] waitUntilDone:YES];
+			[statusItem performSelectorOnMainThread:@selector(setImage:) withObject:theCityImage waitUntilDone:YES];
+			[statusItem performSelectorOnMainThread:@selector(setMenu:) withObject:menu waitUntilDone:YES];
+		}
+
+		[prefsController performSelectorOnMainThread:@selector(activateInterface) withObject:NULL waitUntilDone:YES];
+		[addCity performSelectorOnMainThread:@selector(setEnabled:) withObject:addCity waitUntilDone:YES];
+		[updateMenu performSelectorOnMainThread:@selector(setEnabled:) withObject:updateMenu waitUntilDone:YES];
+    
+		// JRC
+		[refreshMI performSelectorOnMainThread:@selector(setEnabled:) withObject:refreshMI waitUntilDone:YES];
+		[cityTable setDoubleAction:@selector(editCity:)];
+		
+		
+		// cleanup
+		[menuDrawLock unlock];
+	}
 	[NSThread exit];
 } // threadedGenerateMenu
 
@@ -1355,7 +1348,7 @@ void catchException(NSException *exception)
         //we have a nest!
         if(![nextObj objectForKey:@"enabled"])
         {
-            NSMenu *nextMenu = [[[NSMenu alloc] init] autorelease];
+            NSMenu *nextMenu = [[NSMenu alloc] init];
             NSMenuItem *nextItem = [theMenu addItemWithTitle:[nextObj objectForKey:@"property"] action:NULL keyEquivalent:@""];
             [nextItem setSubmenu:nextMenu];
             
@@ -1393,7 +1386,7 @@ void catchException(NSException *exception)
                 {
                     //nextVal is an array of dictionaries with @"title", @"description" and @"link" as keys
                     NSMenuItem *nextItem = [theMenu addItemWithTitle:NSLocalizedString(nextProp,nil) action:nil keyEquivalent:@""];
-                    NSMenu *anotherSub = [[[NSMenu alloc] init] autorelease];
+                    NSMenu *anotherSub = [[NSMenu alloc] init];
                     
                     [nextItem setSubmenu:anotherSub];
                     
@@ -1425,7 +1418,7 @@ void catchException(NSException *exception)
 								   resourceDataUsingCache:!newData];
                     if(dat)
                     {
-                        NSImage *sourceImage = [[[NSImage alloc] initWithData:dat] autorelease];
+                        NSImage *sourceImage = [[NSImage alloc] initWithData:dat];
 						NSRect screenBounds = [[NSScreen mainScreen] visibleFrame];
 						NSSize newSize = [sourceImage size];
 						NSSize originalSize = [sourceImage size];
@@ -1467,7 +1460,7 @@ void catchException(NSException *exception)
 							nextProp = NSLocalizedString(nextProp,@"");
                         
                             NSMenuItem *nextItem = [theMenu addItemWithTitle:NSLocalizedString(nextProp,nil) action:nil keyEquivalent:@""];
-                            NSMenu *anotherSub = [[[NSMenu alloc] init] autorelease];
+                            NSMenu *anotherSub = [[NSMenu alloc] init];
                             
                             [nextItem setSubmenu:anotherSub];
                             nextItem = (NSMenuItem *)[anotherSub addItemWithTitle:@"" action:nil keyEquivalent:@""];
@@ -1476,7 +1469,6 @@ void catchException(NSException *exception)
                             [nextItem setAction:@selector(dummy)];
 							[nextItem setTarget:nextVal];
 							[nextItem setAction:@selector(openLink:)];
-							[resizedImage release];
                         }
                     }
                 }
@@ -1531,7 +1523,7 @@ void catchException(NSException *exception)
 	if([prefsController displayTodayInSubmenu])
 	{
 		NSMenuItem *item = [theMenu addItemWithTitle:NSLocalizedString(@"Current Conditions",@"") action:nil keyEquivalent:@""];
-		NSMenu *subMenu = [[[NSMenu alloc] init] autorelease];
+		NSMenu *subMenu = [[NSMenu alloc] init];
 		[item setSubmenu:subMenu];
         
 		tempMenu = subMenu;
@@ -1548,7 +1540,7 @@ void catchException(NSException *exception)
 			NSString *extFor = NSLocalizedString(@"Extended Forecast",@"");
         
 			NSMenuItem *item = [theMenu addItemWithTitle:extFor action:nil keyEquivalent:@""];
-			NSMenu *subMenu = [[[NSMenu alloc] init] autorelease];
+			NSMenu *subMenu = [[NSMenu alloc] init];
 			[item setSubmenu:subMenu];
             
 			tempMenu = subMenu;
@@ -1578,7 +1570,7 @@ void catchException(NSException *exception)
 			if([dayName hasSuffix:@"ight"])
 				i--;
         
-			NSMenu *attempt = [[[NSMenu alloc] init] autorelease];
+			NSMenu *attempt = [[NSMenu alloc] init];
             
 			NSEnumerator *objEnum = [forecastArray objectEnumerator];
 			NSDictionary *nextObj;
@@ -1772,7 +1764,7 @@ void catchException(NSException *exception)
 
 - (NSMutableArray *)citiesForData:(NSMutableArray *)dataArray
 {
-    NSMutableArray *cityArray = [[[NSMutableArray alloc] init] autorelease];
+    NSMutableArray *cityArray = [[NSMutableArray alloc] init];
     
     NSEnumerator *dataEnum = [dataArray objectEnumerator];
     NSData *data;
@@ -1863,7 +1855,7 @@ NSFont* fontWithMaxHeight(NSString *name, int maxHeight)
 	NSString *imageName = [NSString stringWithFormat:@"Loading-%d",[num intValue]];
 	NSString *imageFileName = [[NSBundle mainBundle] pathForResource:imageName ofType:@"tiff"];
     
-	img = [[[NSImage alloc] initWithContentsOfFile:imageFileName] autorelease];
+	img = [[NSImage alloc] initWithContentsOfFile:imageFileName];
         
 	[statusItem setImage:img];
     
@@ -1912,9 +1904,9 @@ NSFont* fontWithMaxHeight(NSString *name, int maxHeight)
     
     if([forc hasSuffix:@"ight"])
     {
-        tvImage = [[[NSImage alloc] initWithContentsOfFile:@"/Library/Application Support/Meteo/Dock Icons/Television/Television-Night.tiff"] autorelease];
+        tvImage = [[NSImage alloc] initWithContentsOfFile:@"/Library/Application Support/Meteo/Dock Icons/Television/Television-Night.tiff"];
         if(!tvImage)
-            tvImage = [[[NSImage alloc] initWithContentsOfFile:[@"~/Library/Application Support/Meteo/Dock Icons/Television/Television-Night.tiff" stringByExpandingTildeInPath]] autorelease];
+            tvImage = [[NSImage alloc] initWithContentsOfFile:[@"~/Library/Application Support/Meteo/Dock Icons/Television/Television-Night.tiff" stringByExpandingTildeInPath]];
         
         moonImage = [[city weatherReport] 
                             imageForKey:@"Moon Phase"
@@ -1924,14 +1916,14 @@ NSFont* fontWithMaxHeight(NSString *name, int maxHeight)
     }
     else
     {
-        tvImage = [[[NSImage alloc] initWithContentsOfFile:@"/Library/Application Support/Meteo/Dock Icons/Television/Television-Day.tiff"] autorelease];
+        tvImage = [[NSImage alloc] initWithContentsOfFile:@"/Library/Application Support/Meteo/Dock Icons/Television/Television-Day.tiff"];
         if(!tvImage)
-            tvImage = [[[NSImage alloc] initWithContentsOfFile:[@"~/Library/Application Support/Meteo/Dock Icons/Television/Television-Day.tiff" stringByExpandingTildeInPath]] autorelease];
+            tvImage = [[NSImage alloc] initWithContentsOfFile:[@"~/Library/Application Support/Meteo/Dock Icons/Television/Television-Day.tiff" stringByExpandingTildeInPath]];
     }
                             
 
-    NSImage *image = [[[NSImage alloc] initWithSize:NSMakeSize(128,128)] autorelease];
-    NSImage *tempPic = [[[NSImage alloc] initWithSize:NSMakeSize(128,128)] autorelease];
+    NSImage *image = [[NSImage alloc] initWithSize:NSMakeSize(128,128)];
+    NSImage *tempPic = [[NSImage alloc] initWithSize:NSMakeSize(128,128)];
 
     NSDictionary *tempDict = [city dictionaryForProperty:@"Temperature"];
     NSString *temp = [[city weatherReport] 
@@ -1958,9 +1950,9 @@ NSFont* fontWithMaxHeight(NSString *name, int maxHeight)
     if(i < 1)
         i = 1;
         
-    tempBar = [[[NSImage alloc] initWithContentsOfFile:[NSString stringWithFormat:@"/Library/Application Support/Meteo/Dock Icons/Temperature/Temperature-%d.tiff",i]] autorelease];
+    tempBar = [[NSImage alloc] initWithContentsOfFile:[NSString stringWithFormat:@"/Library/Application Support/Meteo/Dock Icons/Temperature/Temperature-%d.tiff",i]];
     if(!tempBar)
-        tempBar = [[[NSImage alloc] initWithContentsOfFile:[[NSString stringWithFormat:@"~/Library/Application Support/Meteo/Dock Icons/Temperature/Temperature-%d.tiff",i] stringByExpandingTildeInPath]] autorelease];
+        tempBar = [[NSImage alloc] initWithContentsOfFile:[[NSString stringWithFormat:@"~/Library/Application Support/Meteo/Dock Icons/Temperature/Temperature-%d.tiff",i] stringByExpandingTildeInPath]];
                                    
     NSMutableDictionary *attr = [MEController bestAttributesForString:temp size:NSMakeSize(36,36) fontName:[prefsController tempFont]];
     
@@ -1999,7 +1991,7 @@ NSFont* fontWithMaxHeight(NSString *name, int maxHeight)
 + (NSMutableDictionary *)bestAttributesForString:(NSString *)string size:(NSSize)size fontName:(NSString *)fontName
 {
     NSFont *font = [NSFont fontWithName:fontName size:1];
-    NSMutableParagraphStyle *style = [[[NSMutableParagraphStyle alloc] init] autorelease];
+    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
     NSMutableDictionary *atr = [NSMutableDictionary dictionary];
     NSSize aSize;
     int i = 1;

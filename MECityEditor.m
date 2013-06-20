@@ -23,11 +23,6 @@
 	return self;
 }
 
-- (void) dealloc
-{
-	[resultsTableData release];
-	[super dealloc];
-}
 
 /* JRC - why not awakFromNib????*/
 /*- (void)applicationDidFinishLaunching:(NSNotification *)not */
@@ -50,7 +45,7 @@
 	[cityOrZipSearchTitle setStringValue:NSLocalizedString(@"cityOrZipSearchTitle",nil)];
 	[search setTitle:NSLocalizedString(@"searchButtonTitle",nil)];
 	
-	[[[cityTable tableColumns] objectAtIndex:0] setHeaderCell:[[[NSTableHeaderCell alloc] initTextCell:NSLocalizedString(@"cityNameCellTitle",@"")] autorelease]];
+	[[[cityTable tableColumns] objectAtIndex:0] setHeaderCell:[[NSTableHeaderCell alloc] initTextCell:NSLocalizedString(@"cityNameCellTitle",@"")]];
 	//[[cityTableHeaderView objectAtIndex:0] setHeaderCell:[[NSCell alloc] initTextCell:NSLocalizedString(@"cityNameCellTitle",@"")]];
 	[onlyTheFirstEightDescription setStringValue:NSLocalizedString(@"onlyTheFirstEightDescriptionTitle",nil)];
 
@@ -58,18 +53,18 @@
 	[confirmButton setTitle:NSLocalizedString(@"confirmButtonTitle",nil)];
 
 	[currentWeatherItems setStringValue:NSLocalizedString(@"currentWeatherItemsTitle",nil)];
-	[[[weatherPropertyTable tableColumns] objectAtIndex:0] setHeaderCell:[[[NSTableHeaderCell alloc] initTextCell:NSLocalizedString(@"currentWeatherItemsPropertyTitle",@"")] autorelease]];
-	[[[weatherPropertyTable tableColumns] objectAtIndex:1] setHeaderCell:[[[NSTableHeaderCell alloc] initTextCell:NSLocalizedString(@"currentWeatherItemsOnTitle",@"")] autorelease]];
-	[[[weatherPropertyTable tableColumns] objectAtIndex:2] setHeaderCell:[[[NSTableHeaderCell alloc] initTextCell:NSLocalizedString(@"currentWeatherItemsUnitTitle",@"")] autorelease]];
-	[[[weatherPropertyTable tableColumns] objectAtIndex:3] setHeaderCell:[[[NSTableHeaderCell alloc] initTextCell:NSLocalizedString(@"currentWeatherItemsServerTitle",@"")] autorelease]];
+	[[[weatherPropertyTable tableColumns] objectAtIndex:0] setHeaderCell:[[NSTableHeaderCell alloc] initTextCell:NSLocalizedString(@"currentWeatherItemsPropertyTitle",@"")]];
+	[[[weatherPropertyTable tableColumns] objectAtIndex:1] setHeaderCell:[[NSTableHeaderCell alloc] initTextCell:NSLocalizedString(@"currentWeatherItemsOnTitle",@"")]];
+	[[[weatherPropertyTable tableColumns] objectAtIndex:2] setHeaderCell:[[NSTableHeaderCell alloc] initTextCell:NSLocalizedString(@"currentWeatherItemsUnitTitle",@"")]];
+	[[[weatherPropertyTable tableColumns] objectAtIndex:3] setHeaderCell:[[NSTableHeaderCell alloc] initTextCell:NSLocalizedString(@"currentWeatherItemsServerTitle",@"")]];
 	[cityPopUpButton setStringValue:NSLocalizedString(@"citiesListTitle",nil)];
 	[applyCityPreferences setTitle:NSLocalizedString(@"ImportButtonTitle",nil)];
 	
 	[longTermForecastItems setStringValue:NSLocalizedString(@"longTermForecastItemsTitle",nil)];
-	[[[forecastPropertyTable tableColumns] objectAtIndex:0] setHeaderCell:[[[NSTableHeaderCell alloc] initTextCell:NSLocalizedString(@"longTermForecastItemsOnTitle",@"")] autorelease]];
-	[[[forecastPropertyTable tableColumns] objectAtIndex:1] setHeaderCell:[[[NSTableHeaderCell alloc] initTextCell:NSLocalizedString(@"longTermForecastItemsPropertyTitle",@"")] autorelease]];
-	[[[forecastPropertyTable tableColumns] objectAtIndex:2] setHeaderCell:[[[NSTableHeaderCell alloc] initTextCell:NSLocalizedString(@"longTermForecastItemsUnitTitle",@"")] autorelease]];
-	[[[forecastPropertyTable tableColumns] objectAtIndex:3] setHeaderCell:[[[NSTableHeaderCell alloc] initTextCell:NSLocalizedString(@"longTermForecastItemsServerTitle",@"")] autorelease]];
+	[[[forecastPropertyTable tableColumns] objectAtIndex:0] setHeaderCell:[[NSTableHeaderCell alloc] initTextCell:NSLocalizedString(@"longTermForecastItemsOnTitle",@"")]];
+	[[[forecastPropertyTable tableColumns] objectAtIndex:1] setHeaderCell:[[NSTableHeaderCell alloc] initTextCell:NSLocalizedString(@"longTermForecastItemsPropertyTitle",@"")]];
+	[[[forecastPropertyTable tableColumns] objectAtIndex:2] setHeaderCell:[[NSTableHeaderCell alloc] initTextCell:NSLocalizedString(@"longTermForecastItemsUnitTitle",@"")]];
+	[[[forecastPropertyTable tableColumns] objectAtIndex:3] setHeaderCell:[[NSTableHeaderCell alloc] initTextCell:NSLocalizedString(@"longTermForecastItemsServerTitle",@"")]];
 	
 	cell = [[NSButtonCell alloc] init]; // got rid of retain based on TableViewDemo.m
     [cell setButtonType:NSSwitchButton];
@@ -77,7 +72,6 @@
     [cell setImagePosition:NSImageOverlaps];
     [cell setControlSize:NSSmallControlSize];
     [[weatherPropertyTable tableColumnWithIdentifier:@"enabled"] setDataCell:cell];
-    [cell release];
     
     pop = [[NSPopUpButtonCell alloc] initTextCell:@"" pullsDown:NO];
     [pop setBordered:NO];
@@ -85,7 +79,6 @@
     [pop setAutoenablesItems:NO];
     [pop setFont:[NSFont systemFontOfSize:11]];
     [[weatherPropertyTable tableColumnWithIdentifier:@"units"] setDataCell:pop];
-    [pop release];
     
     pop = [[NSPopUpButtonCell alloc] initTextCell:@"Servers" pullsDown:YES];
     [pop setBordered:NO];
@@ -94,7 +87,6 @@
     [pop setAltersStateOfSelectedItem:NO];
     [pop setFont:[NSFont systemFontOfSize:11]];
     [[weatherPropertyTable tableColumnWithIdentifier:@"servers"] setDataCell:pop];
-    [pop release];
     
     
     cell = [[NSButtonCell alloc] init];
@@ -103,7 +95,6 @@
     [cell setImagePosition:NSImageOverlaps];
     [cell setControlSize:NSSmallControlSize];
     [[forecastPropertyTable tableColumnWithIdentifier:@"enabled"] setDataCell:cell];
-    [cell release];
     
     pop = [[NSPopUpButtonCell alloc] initTextCell:@"" pullsDown:NO];
     [pop setBordered:NO];
@@ -111,7 +102,6 @@
     [pop setAutoenablesItems:NO];
     [pop setFont:[NSFont systemFontOfSize:11]];
     [[forecastPropertyTable tableColumnWithIdentifier:@"units"] setDataCell:pop];
-    [pop release];
     
     pop = [[NSPopUpButtonCell alloc] initTextCell:@"Servers" pullsDown:YES];
     [pop setBordered:NO];
@@ -120,7 +110,6 @@
     [pop setAltersStateOfSelectedItem:NO];
     [pop setFont:[NSFont systemFontOfSize:11]];
     [[forecastPropertyTable tableColumnWithIdentifier:@"servers"] setDataCell:pop];
-    [pop release];
     
     currentCity = nil;
     otherCities = nil;
@@ -831,7 +820,7 @@
 - (id)dataCellForRow:(int)row
 {
     if(row != -1)
-        return [[[self dataCell] copy] autorelease];
+        return [[self dataCell] copy];
     else
         return nil;
 }
@@ -865,11 +854,6 @@
     return self;
 }
 
--(void)dealloc
-{
-	[rowData release];
-	[super dealloc];
-}
 
 - (BOOL)isEditable
 {

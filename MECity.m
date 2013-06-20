@@ -16,7 +16,7 @@
     MECity *city = [[MECity alloc] initWithCityAndInfoCodes:[NSMutableDictionary dictionary] forCity:@""];
     [city replaceMissingDefaults];
                                         
-    return [city autorelease];
+    return city;
 }
 
 /* @called-by:  MECity defaultCity
@@ -39,25 +39,15 @@
     return self;
 }
 
-- (void)dealloc
-{
-    [weather_attributes release]; /* JRC - changed all autoreleases to release */
-    [forecast_attributes release];
-    [cityAndInfoCodes release];
-    [cityName release];
-    [weather release];
-	
-	[super dealloc];
-}
 
 - (MECity *)copy
 {
-    MECity *city = [[MECity alloc] initWithCityAndInfoCodes:[[self->cityAndInfoCodes mutableCopy] autorelease]
-                                   forCity:[[[self cityName] copy] autorelease]];
+    MECity *city = [[MECity alloc] initWithCityAndInfoCodes:[self->cityAndInfoCodes mutableCopy]
+                                   forCity:[[self cityName] copy]];
     [city setWeatherAttributes:[[self weatherAttributes] duplicate]];
     [city setForecastAttributes:[[self forecastAttributes] duplicate]];
     city->isActive = self->isActive;
-    city->weather = [self->weather retain];
+    city->weather = self->weather;
     
     return city;
 }
@@ -70,7 +60,6 @@
     [dict setObject:info forKey:@"info"];
     [cityAndInfoCodes setObject:dict forKey:server];
     
-    [weather autorelease];
     weather = [[MEWeather alloc] initWithCodesAndInfos:cityAndInfoCodes];
 }
 
@@ -78,7 +67,7 @@
 */
 - (void)recreateWeatherObject
 {
-    [weather autorelease]; /* JRC - was autorelease */
+     /* JRC - was autorelease */
     weather = [[MEWeather alloc] initWithCodesAndInfos:cityAndInfoCodes];
 }
 
@@ -86,9 +75,9 @@
 */
 - (void)setCodeInfo:(NSMutableDictionary *)dict forServer:(NSString *)server
 {
-    [cityAndInfoCodes setObject:[dict retain] forKey:server];
+    [cityAndInfoCodes setObject:dict forKey:server];
     
-    [weather autorelease]; /* JRC - was autorelease */
+     /* JRC - was autorelease */
     weather = [[MEWeather alloc] initWithCodesAndInfos:cityAndInfoCodes]; /* retained */
 }
 
@@ -99,8 +88,8 @@
 
 - (void)setWeatherAttributes:(NSMutableArray *)atr
 {
-    [weather_attributes autorelease]; /* JRC - was autorelease */
-    weather_attributes = [atr retain];
+     /* JRC - was autorelease */
+    weather_attributes = atr;
 }
 
 - (NSMutableArray *)weatherAttributes
@@ -110,8 +99,8 @@
 
 - (void)setForecastAttributes:(NSMutableArray *)atr
 {
-    [forecast_attributes autorelease]; /* JRC - was autorelease */
-    forecast_attributes = [atr retain];
+     /* JRC - was autorelease */
+    forecast_attributes = atr;
 }
 
 - (NSMutableArray *)forecastAttributes
@@ -126,8 +115,8 @@
 
 - (void)setCityName:(NSString *)name
 {
-    [cityName autorelease]; /* JRC - was autorelease */
-    cityName = [name retain];
+     /* JRC - was autorelease */
+    cityName = name;
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder
@@ -159,17 +148,17 @@
         {
             cityName = [decoder decodeObjectForKey:@"name"];
             if (cityName)
-				[cityName retain];
+				;
 			else
 				cityName = @"d";
             weather_attributes = [decoder decodeObjectForKey:@"weather"];
 			if (weather_attributes)
-				[weather_attributes retain];
+				;
 			else
 				weather_attributes = [[NSMutableArray alloc] init];
             forecast_attributes = [decoder decodeObjectForKey:@"forecast"];
 			if (forecast_attributes)
-				[forecast_attributes retain];
+				;
 			else
 				forecast_attributes = [[NSMutableArray alloc] init];
 			NSArray *toBeRemoved = [NSArray arrayWithObjects:@"Forecast - Hi",@"Forecast - Wind",nil];
@@ -191,9 +180,9 @@
 			
             cityAndInfoCodes = [decoder decodeObjectForKey:@"infoAndCodes"];
             if (cityAndInfoCodes)
-				[cityAndInfoCodes retain];
+				;
 			else
-				cityAndInfoCodes = [[NSMutableDictionary dictionary] retain];
+				cityAndInfoCodes = [NSMutableDictionary dictionary];
             isActive = [[decoder decodeObjectForKey:@"isActive"] boolValue];
             [self replaceMissingDefaults];
             
@@ -201,10 +190,10 @@
         }
         else
         {
-            cityName = [[decoder decodeObject] retain];
-            weather_attributes = [[decoder decodeObject] retain];
-            forecast_attributes = [[decoder decodeObject] retain];
-            cityAndInfoCodes = [[decoder decodeObject] retain];
+            cityName = [decoder decodeObject];
+            weather_attributes = [decoder decodeObject];
+            forecast_attributes = [decoder decodeObject];
+            cityAndInfoCodes = [decoder decodeObject];
             isActive = [[decoder decodeObject] boolValue];
             [self replaceMissingDefaults];
             
